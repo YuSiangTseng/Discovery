@@ -1,0 +1,104 @@
+page-myWorkPlace {
+	
+	.displayed {
+      width:88%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  body {
+    margin: 0px;
+    padding: 0px;      
+  }
+
+  .forIonSelect {
+    margin-left: 10px;
+  }
+
+  .select-ios .select-icon{
+      position: inherit !important;
+      width: 12px;
+      height: 18px;
+      margin-left: -20px;
+      visibility: none;
+  }
+
+  .select-ios .select-icon .select-icon-inner {
+    border-top: 10px solid;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 8px solid;
+    color: transparent;
+    left: 17px;
+    margin-top: -11px;
+  }
+
+  .item .item-block .item-ios {
+      border-bottom: none;
+  }
+
+  .ion-row {
+     border-bottom: 1px solid white;
+
+  }
+
+  .btn {
+      height: 70px;
+      width: 70px;
+      border-radius: 50%;
+      border: 1px solid transparent;
+      display: inline-block;
+      margin: 0px 10px;
+  }
+
+  .removeBottomSpace{
+    margin-bottom: 0px;
+  }
+
+  .selectBackgroundColor {
+    background-color: #273238;
+  }
+
+  .label-ios {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    margin-top: 11px;
+  }
+
+  .list-ios[no-lines] .item .item-inner {
+    padding-right: 0px;
+  }
+
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .noBorder {
+    border-right: 0px clear transparent;
+    border-left: 0px clear transparent; 
+    border-top: 0px clear transparent;
+    border-bottom: 0px clear transparent; 
+    border-color: transparent;
+  }
+
+  .bg-style {
+    background-color: #2E3C3C;
+    width:100%;
+  }
+
+  .buttonFourCorners {
+    border-radius: 0px;
+  }
+
+  .boldFont {
+    font-weight: bold;
+    color: #FFFFFF !important;
+  }
+
+  .inputTextColor {
+    color: #00DF88;
+  }
+  
+}

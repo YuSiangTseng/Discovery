@@ -1,0 +1,105 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForSettingTitle boldFont">
+         Settings
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarSettings.svg">
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list no-lines>
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">How it works</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+    
+    <ion-slides effect = "cube"  slidesPerView = "2" grabCursor = "true" centeredSlides = "true" spaceBetween = "5" initialSlide = "2" (ionSlideNextStart) = "updatePagerNextButtonStyle()" (ionSlidePrevStart) = "updatePagerPreviousButtonStyle()" (ionSlideDidChange) = "updateDescription()" style = "margin-top: 20px">
+    <ion-slide style = "width: 60vw">
+    <button ion-button style = "width: 60vw; height: 60vw" class = "gradientColorForSettingText"   (click) = "connectToCalendar()">
+     <div style="font-size: 6vw; white-space: normal;" class="boldFont">
+     <img src="assets/img/userAvatarWhite.svg" style = "padding-bottom: 9px">
+     <p>Chris Chris Chris Chris Chris Chris Chris Chris </p>
+     </div>
+    </button>
+    </ion-slide>
+    <ion-slide style = "width: 60vw">
+    <button ion-button style = "width: 60vw; height: 60vw" class = "gradientColorForSettingText" (click) = "connectToCalendar()">
+     <div style="font-size: 6vw; white-space: normal;" class="boldFont">
+     <img src="assets/img/userAvatarWhite.svg" style = "padding-bottom: 9px">
+     <p>Alexis Alexis Alexis Alexis Alexis Alexis Alexis </p>
+     </div>
+    </button>
+    </ion-slide>
+    <ion-slide style = "width: 60vw">
+    <button ion-button style = "width: 60vw; height: 60vw" class = "gradientColorForSettingText" (click) = "connectToCalendar()">
+    <div style="font-size: 6vw; white-space: normal;" class="boldFont">
+     <img src="assets/img/userAvatarWhite.svg" style = "padding-bottom: 9px">
+     <p>Emily Emily Emily Emily Emily Emily Emily Emily </p>
+     </div>
+    </button>
+    </ion-slide>
+    <ion-slide style = "width: 60vw">
+    <button ion-button style = "width: 60vw; height: 60vw" class = "gradientColorForSettingText" (click) = "connectToCalendar()">
+     <div style="font-size: 6vw; white-space: normal;" class="boldFont">
+     <img src="assets/img/userAvatarWhite.svg" style = "padding-bottom: 9px">
+     <p>YuSiang YuSiang YuSiang YuSiang YuSiang YuSiang</p>
+     </div>
+    </button>
+    </ion-slide>
+    <ion-slide style = "width: 60vw">
+    <button ion-button style = "width: 60vw; height: 60vw" class = "gradientColorForSettingText" (click) = "connectToCalendar()">
+     <div style="font-size: 6vw; white-space: normal;" class="boldFont">
+     <img src="assets/img/userAvatarWhite.svg" style = "padding-bottom: 9px">
+     <p>??????????????????????????????????????????????? </p>
+     </div>
+    </button>
+    </ion-slide>
+    </ion-slides>
+
+    <ion-item style = "background-color: transparent; padding-left: 16px; padding-right: 16px; margin-top: 20px">
+    <div id = "howItWorksDescription" style="width: 100%; height: 20vw; color: #FFEA2C; white-space: normal;font-size: 5vw;" text-center>
+    This is the text for slide 2, This is the text for slide 2, This is the text for slide 2, This is the text for slide 2, This is the text for slide 2
+    </div>
+    </ion-item>
+
+    <div id = "outer">
+      <button ion-button (click) = "moveToPrevious()" class = "btn" style = "background: transparent;">
+        <img src="assets/img/userAvatarSettings.svg">
+      </button>
+      
+      <div class = "inner"><button ion-button id = "button0" style = "font-size: 0.6rem; width: 5vw; height: 1px; background-color: #FFFFFF"></button></div>
+      <div class = "inner"><button ion-button id = "button1" style = "font-size: 0.6rem; width: 5vw; height: 1px; background-color: #FFFFFF"></button></div>
+      <div class = "inner"><button ion-button id = "button2" style = "font-size: 0.6rem; width: 9vw; height: 1px; background-color: #FFEA2C"></button></div>
+      <div class = "inner"><button ion-button id = "button3" style = "font-size: 0.6rem; width: 5vw; height: 1px; background-color: #FFFFFF"></button></div>
+      <div class = "inner"><button ion-button id = "button4" style = "font-size: 0.6rem; width: 5vw; height: 1px; background-color: #FFFFFF"></button></div>
+    
+      <button ion-button (click) = "moveToNext()" class = "btn" style = "background: transparent;">
+          <img src="assets/img/userAvatarSettings.svg">
+      </button>
+    </div>
+
+  </ion-list>
+</ion-content>

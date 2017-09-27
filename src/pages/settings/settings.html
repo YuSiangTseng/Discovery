@@ -1,0 +1,213 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForSettingTitle boldFont">
+         Settings
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
+     <img src="assets/img/userAvatarSettings.svg">
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list no-lines>
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <!-- <p><img class="displayed"  height="70 px" width="350 px" src="assets/img/myAccount.png"></p> -->
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Notification Settings</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;" (click)="goToNotificationSettings()">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    <!-- <div style = "margin-left: 10px; display: flex; align-items: center;">
+    Hello
+    <img src="assets/img/gallery.svg" (click) = "openGallery()" style= "float: right; width: 10%; height: 10%">
+    </div> -->
+    </div>
+    <br>
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">About Highlight</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;" (click)="goToMyWorkPlace()">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    <!-- <div style = "margin-left: 10px; display: flex; align-items: center;">
+    Hello
+    <img src="assets/img/gallery.svg" (click) = "openGallery()" style= "float: right; width: 10%; height: 10%">
+    </div> -->
+    </div>
+    <br>
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">How it Works</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;" (click)="goToHowItWorks()">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+
+
+
+    <br>
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <button style="background-color: transparent;">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Frequently Asked Questions</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click)="goToMyFavouriteEvent()">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+
+    <br>
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <button style="background-color: transparent;">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Get in Touch</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click)="goToMyFavouriteEvent()">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+
+    <br>
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons left>
+    <button style="background-color: transparent;">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Terms & Conditions</h2>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click)="goToMyFavouriteEvent()">
+     <img src="assets/img/starMyAccount.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+
+
+    </ion-item>
+  </ion-list>
+</ion-content>

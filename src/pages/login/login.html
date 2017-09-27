@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+    <div class = "gradientColorForText boldFont">
+      SIGN IN
+    </div>
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+
+  <div class = "row" padding>
+   <button ion-button class = "col col-50 gradientColor buttonFourCorners noBorder boldFont" color="light" outline>SIGN IN</button>
+   <button ion-button class = "col col-50 buttonFourCorners selectBackgroundColor noBorder boldFont" color="light" outline (click) = "goToRegisterPage()">REGISTER</button>
+  </div>
+
+  <div text-center class = "bg-style noBorder" style="margin-top: 30%">
+  <ion-list class = "bg-style noBorder" no-lines>
+
+    <ion-item class = "bg-style">
+    <ion-row class = "ion-row">
+    <ion-col col-2 text-center style="align-self: center;">
+        <img src="assets/img/email.svg" alt = "" width="20px" height="20px" align="middle">
+    </ion-col>
+    <ion-col col-10 text-center style="align-self: center;">
+        <ion-item class="bg-style noBorder">
+          <ion-input  class = "inputTextColor" type="email" floating placeholder="Email address" [(ngModel)]="email" (keypress)="dismissKeyBoard($event)"></ion-input>
+        </ion-item>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-2 text-center style="align-self: center;">
+        <img src="assets/img/lock.svg" alt = "" width="20px" height="20px" align="middle">
+    </ion-col>
+    <ion-col col-10 text-center style="align-self: center;">
+        <ion-item class="bg-style noBorder">
+          <ion-input class = "inputTextColor" type="password" floating placeholder="Password" [(ngModel)]="password" (keypress)="dismissKeyBoard($event)"></ion-input>
+        </ion-item>
+    </ion-col>
+    </ion-row>
+    <br>
+    <div text-center>
+        <button ion-button clear color = "light">forgotten your password?</button>
+    </div>
+    </ion-item>
+  </ion-list>
+  </div>
+
+</ion-content>
+<ion-footer class = "foo" no-padding text-center>
+  <button ion-button color="light" class = "col buttonFourCorners gradientColor noBorder boldFont" style = "height: 100%" (click)='login(email, password);' outline>SIGN IN</button>
+</ion-footer>

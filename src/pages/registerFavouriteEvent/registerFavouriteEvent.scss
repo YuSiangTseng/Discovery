@@ -1,0 +1,92 @@
+page-registerFavouriteEvent {
+	.secondSectionBg {
+
+    	background: #505050;
+    	width:100%;
+  	}
+
+  	.bg-style {
+        background: #87CEEB;
+        width:100%;
+  	}
+
+  	.textPosition {
+  		text-align: left;
+  	}
+
+  	.textMiddle {
+  		text-align: center;
+  	}
+
+  	.textRight {
+  		text-align: right;
+  	}
+
+  	.displayed img {
+  		height: 75px;
+  	  	width:	88%;
+      	display: block;
+      	margin-left: auto;
+      	margin-right: auto;
+  	}
+
+	#container {
+    width:100%;
+    text-align:center;
+	}
+
+	#left {
+	    float:left;
+	}
+
+	#center {
+	    display: inline-block;
+	    margin: auto;
+	}
+
+	#right {
+	    float:right;
+	}
+
+	.btn {
+  		height: 80px;
+  		width: 80px;
+  		border-radius: 50%;
+  		border: 1px solid red;
+  		display: inline-block;
+  		margin: 0px 10px;
+	}
+
+	.forIonSelect {
+		margin-left: 10px;
+	}
+
+	.select-ios .select-icon {
+    	position: inherit;
+    	width: 12px;
+    	height: 18px;
+    	margin-left: -7px;
+    	background: transparent url("assets/img/tick.png") no-repeat left center;
+	}
+
+	.noBorder {
+      	border-right: 0px clear transparent;
+      	border-left: 0px clear transparent; 
+      	border-top: 0px clear transparent;
+      	border-bottom: 0px clear transparent; 
+      	background-color: #87CEEB;
+      	border-color: transparent;
+  	}
+
+  	.item .item-block .item-ios {
+   		border-bottom: none;
+	}
+
+	/*.row {
+	   border-bottom: 1px solid black;
+
+	}
+   */
+
+
+}

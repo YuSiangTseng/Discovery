@@ -1,0 +1,125 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForText boldFont">
+          My WORKPLACE
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button ion-button small icon-right text-center (click)="goToTabsPage()">
+    Submit
+    <ion-icon name="icon-codepen"></ion-icon>
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list class = "bg-style noBorder removeBottomSpace" no-lines style = "margin-left: 0px">
+  <ion-item class = "bg-style noBorder" style = "padding-left: 0px">
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColor">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">My Work Place</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 8px; padding-right: 8px"> 
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder" style = "background: url(assets/img/arrowDown.svg) no-repeat left;">
+        <ion-select  class = "inputTextColor" interface = "popover" [(ngModel)]="userJobTitle" (ionChange)="updateTickIcon('userJobTitle')">
+            <ion-option class = "inputTextColor" value="Doctor">Doctor</ion-option>
+            <ion-option class = "inputTextColor" value="Teacher">Teacher</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">Job Title <img src={{tickImageForJobTitle}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder">
+        <ion-input class = "inputTextColor" type="text" placeholder="Key Stage" [(ngModel)]="userKeyStage" (ionBlur) = "updateTickIcon('userKeyStage')" (keypress)="dismissKeyBoard($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">Key Stage <img src={{tickImageForKeyStage}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder">
+        <ion-input class = "inputTextColor" type="text" placeholder="School Name" [(ngModel)]="userSchoolName" (ionBlur) = "updateTickIcon('userSchoolName')" (keypress)="dismissKeyBoard($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">School Name <img src={{tickImageForSchoolName}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder">
+        <ion-input class = "inputTextColor" type="text" placeholder="Postcode" [(ngModel)]="userPostcode" (ionBlur) = "updateTickIcon('userPostcode')" (keypress)="dismissKeyBoard($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">Postcode <img src={{tickImageForPostcode}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder" style = "background: url(assets/img/arrowDown.svg) no-repeat left;">
+        <ion-select  class = "inputTextColor" interface = "popover" [(ngModel)]="userCountry" (ionChange)="updateTickIcon('userCountry')">
+            <ion-option class = "inputTextColor" value="U.K.">U.K.</ion-option>
+            <ion-option class = "inputTextColor" value="U.S.">U.S.</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">Country <img src={{tickImageForCountry}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+    <ion-row class = "ion-row">
+    <ion-col col-8>
+      <ion-item class="bg-style noBorder">
+        <ion-input class = "inputTextColor" type="text" placeholder="Town" [(ngModel)]="userTown" (ionBlur) = "updateTickIcon('userTown')" (keypress)="dismissKeyBoard($event)"></ion-input>
+      </ion-item>
+    </ion-col>
+    <ion-col col-4 text-center style="align-self: center;">
+            <font size = "2em" color = "#687170" style="float: right;">Town <img src={{tickImageForTown}} alt = "" width="20px" height="20px" align="middle"></font>
+    </ion-col>
+    </ion-row>
+
+
+    
+    </ion-item>
+    </ion-item>
+  </ion-list>
+</ion-content>
+<!-- <ion-footer no-padding text-center class="bg-style foo noBorder">
+  <div class = "row" no-padding style="height: 100%">
+   <button ion-button class = "col col-50 gradientColor buttonFourCorners noBorder boldFont" color="light" outline style="height: 100%; border-right: none;">FINISH LATER</button>
+   <button ion-button class = "col col-50 gradientColor buttonFourCorners noBorder boldFont" color="light" outline style="height: 100%; border-left: none;" (click) = "goToRegisterFavouriteEvents()">NEXT STEP</button>
+  </div>
+</ion-footer> -->

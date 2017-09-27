@@ -1,5 +1,14 @@
 {
   "name": "Discovery",
   "app_id": "",
-  "type": "ionic-angular"
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  },
+
+  "proxies":
+  [{
+	"path": "/api",
+	"proxyUrl": "https://yeswestock.com/JSON/user/auth/login"
+  } ]
 }

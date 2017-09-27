@@ -1,0 +1,143 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForSettingTitle boldFont">
+         Settings
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarSettings.svg">
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list no-lines>
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Notification Settings</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarWhite.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+    <ion-item class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%; margin-bottom: 10px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <div class="boldFontWithColor" style="color: #FBD745; font-size: 4.3vw">Turn My Notification:</div>
+    </div>
+    </ion-col>
+    <ion-col col-4 style = "height: 100%; align-items: center; display: grid; padding-right: 0px;">
+    <ion-item style = "margin-left: 15px; width: 80%; background-color: transparent; padding-left: 0px">
+    <ion-toggle large class="toggle-large" [(ngModel)]="notificationSwitch" (ionChange) = "updateNotificationSwitch()" checked = {{notificationSwitch}} style = "padding-left: 8px;"></ion-toggle>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    </div>
+    <div class = "ion-row"></div>
+    </ion-item>
+
+    <ion-item class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <div class="boldFontWithColor" style="color: #FBD745; font-size: 4.3vw; padding-bottom: 10px;">Send me reminder notifications in (no. days)</div>
+    </ion-row>
+    <ion-scroll scrollX="true" scrollY="false" scrollbar-x="false">
+    <!-- <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <div class="boldFontWithColor" style="color: #FBD745; font-size: 4.5vw; padding-bottom: 12px;">Send me reminder notifications in (no. days)</div>
+    </ion-row> -->
+    <div id="outer">
+    <button ion-button id = "day1" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('1')">
+     <font style="font-size: 6vw;">1</font>
+    </button>
+
+    <button ion-button id = "day2" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('2')">
+     <font style="font-size: 6vw">2</font>
+    </button>
+
+    <button ion-button id = "day3" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('3')">
+     <font style="font-size: 6vw">3</font>
+    </button>
+
+    <button ion-button id = "day4" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('4')">
+    <font style="font-size: 6vw">4</font>
+    </button>
+
+    <button ion-button id = "day5" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('5')">
+    <font style="font-size: 6vw">5</font>
+    </button>
+
+    <button ion-button id = "day6" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('6')">
+     <font style="font-size: 6vw">6</font>
+    </button>
+
+    <button ion-button id = "day7" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('7')">
+     <font style="font-size: 6vw">7</font>
+    </button>
+
+    <button ion-button id = "day8" class = "btn boldFontWithColor" style="background-color: transparent;" (click) = "setDaysForNotification('8')">
+     <font style="font-size: 6vw">8</font>
+    </button>
+    </div>
+    </ion-scroll>
+    <div class = "ion-row"></div>
+    </ion-item>
+    <ion-item class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <div class="boldFontWithColor" style="color: #FBD745; font-size: 4.3vw; padding-bottom: 10px;">Display my details to others?</div>
+    </ion-row>
+    <div style = "height: 55px; width: 100%; margin-bottom: 10px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex; padding-left: 0px">
+    <div style = "display: flex;">
+    <div class="boldFontWithColor wordWrap" style="color: #FFFFFF; font-size: 3.3vw">We will only display your avatar, first name, last name initial, location and job title</div>
+    </div>
+    </ion-col>
+    <ion-col col-4 style = "height: 100%; align-items: center; display: grid; padding-right: 0px;">
+    <ion-item style = "margin-left: 15px; width: 80%; background-color: transparent; padding-left: 0px">
+    <ion-toggle large class="toggle-large" style = "padding-left: 8px;"></ion-toggle>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    </div>
+    <div class = "ion-row"></div>
+    </ion-item>
+
+    <ion-item class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%; margin-bottom: 10px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <div class="boldFontWithColor" style="color: #FBD745; font-size: 4.3vw">Connect to my calendar</div>
+    </div>
+    </ion-col>
+    <ion-col col-4 style = "align-items: center; display: flex; padding-right: 0px; padding-left: 0px; padding-top: 0px; border-radius: 3px">
+    <!-- <ion-item style = "margin-left: 15px; width: 80%; background-color: transparent; padding-left: 0px">
+    <div -->
+    <button ion-button style = "width: 100%" class = "gradientColorForSettingText" (click) = "connectToCalendar()">
+     <h2 class="boldFont">connect</h2>
+    </button>
+    <!-- </div>
+    </ion-item> -->
+    </ion-col>
+    </ion-row>
+    </div>
+    <div class = "ion-row"></div>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,11 +1,108 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      About
+    <ion-title class = "selectBackgroundColor">
+      <div class = "gradientColorForTextDashBoard boldFont">
+        MY DASHBOARD
+      </div>
     </ion-title>
+    <ion-buttons right>
+    <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
+     <img src="assets/img/userAvatarDashBoard.svg">
+    </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content  class="gradientColorTopToBottomDashBoard">
+	<ion-list class = "removeBottomSpace transparentBackground" align-center no-lines>
+    <ion-item  class = "transparentBackground noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColor">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">MY UPCOMING EVENTS</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/calendarDashBoard.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
 
+
+   <ion-item class = "transparentBackground" style = "padding-left: 6px; padding-right: 6px;" no-lines text-wrap *ngFor="let item of shareService.getDashboardItemDetail()">
+      <ion-card class="displayed" style = "margin: 0px">
+      <img class="displayed"  height="250 px" src="{{item.item.imageUrlKey}}" (click)="goToItemDetail($event, item.item, item.itemIndex)">
+         <ion-card-content no-padding>
+          <ion-row>
+          <ion-col col-9 style = "align-items: left; display: flex; text-align: left">
+          <B>
+          <div style="background:white; color: black; font-size: 6vw; float: left; margin-left: 6vw;" no-padding>{{item.item.labelKey}}
+          </div>
+          <br />
+          <div style="background:white; color: #928e8e; font-size: 4vw; float: left; margin-left: 6vw;" no-padding>{{item.tag}}
+          </div>
+          </B>
+          </ion-col>
+          <ion-col col-2 style = "align-items: center; display: flex;">
+          <table border="0" style="color: black;  float:right; margin-right: 3vw; vertical-align: middle; height: 50px; width: 80%; border-color: : transparent">
+          <tr text-center>
+              <td  class = "noBorder" bgcolor="#1C2124" style="color: #43EE7E; height: 60%;" text-center>{{item.date}}</td>
+          </tr>
+          <tr>
+              <td  class = "noBorder" bgcolor="#43EE7E" style="color: #1C2124; height: 40%;" text-center>{{item.month}}</td>
+          </tr>
+          </table>
+          </ion-col>
+          </ion-row>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+
+    
+    <ion-item  class = "transparentBackground noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColor">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">ACTIVITY FEED</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/calendarDashBoard.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+
+    <ion-item text-wrap *ngFor="let item of shareService.getDashboardItemDetail()" style="background-color: transparent;">
+      <ion-row style = "padding-bottom: 0px">
+        <ion-col col-3 style = "display: flex; align-items: center;">
+          <img src="{{item.item.imageUrlKey}}">
+        </ion-col>
+        <ion-col col-9 style = "text-align: left; padding-left: 0px">
+            <ion-card item-end style="background-color: transparent; box-shadow: none; width: 100%; margin-left: 0px">
+            <ion-card-content>
+            <h2 style = "color: #000000">{{item.item.labelKey}}</h2>
+            </ion-card-content>
+            </ion-card> 
+        </ion-col>
+      </ion-row>
+      <div class = "ion-row"></div>
+    </ion-item>
+	  </ion-list>
 </ion-content>

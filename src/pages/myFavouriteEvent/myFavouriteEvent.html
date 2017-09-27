@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Account
+    </ion-title>
+    <ion-buttons right>
+    <p><button ion-button small icon-right text-center (click)="goToTabsPage()">
+    Submit
+    <ion-icon name="icon-codepen"></ion-icon>
+    </button></p>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-list no-lines>
+    <!-- <ion-item class="displayed"> -->
+    <div class = "displayed">
+      <img class="displayed" src="assets/img/events.jpg">
+    </div>
+    
+    <!-- </ion-item> -->
+    <ion-item class="bg-style">
+    <ion-thumbnail item-start>
+      <img src="assets/img/star.png">
+    </ion-thumbnail>
+    <div class="textPosition">
+    <h2>Mango</h2>
+    <p>5 Events</p>
+    </div>
+    <ion-thumbnail item-end (click)="addFavouriteEvent('Mango')">
+      <img src={{imageSourceMango}}>
+    </ion-thumbnail>
+    </ion-item>
+    <ion-item class="bg-style">
+    <ion-thumbnail item-start>
+      <img src="assets/img/star.png">
+    </ion-thumbnail>
+    <div class="textPosition">
+    <h2>Green</h2>
+    <p>5 Events</p>
+    </div>
+    <ion-thumbnail item-end (click)="addFavouriteEvent('Green')">
+      <img src={{imageSourceGreen}}>
+    </ion-thumbnail>
+    </ion-item>
+    </ion-list>
+</ion-content>

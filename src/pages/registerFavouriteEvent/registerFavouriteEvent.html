@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      My Favourite Events
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+    <ion-list>
+    <!-- <ion-item class="displayed"> -->
+    <div class = "displayed">
+      <img class="displayed" src="assets/img/events.jpg">
+    </div>
+    
+    <!-- </ion-item> -->
+    <ion-item class="bg-style">
+    <ion-thumbnail item-start>
+      <img src="assets/img/star.png">
+    </ion-thumbnail>
+    <div class="textPosition">
+    <h2>Mango</h2>
+    <p>5 Events</p>
+    </div>
+    <ion-thumbnail item-end (click)="addFavouriteEvent('Mango')">
+      <img src={{imageSourceMango}}>
+    </ion-thumbnail>
+    </ion-item>
+    <ion-item class="bg-style">
+    <ion-thumbnail item-start>
+      <img src="assets/img/star.png">
+    </ion-thumbnail>
+    <div class="textPosition">
+    <h2>Green</h2>
+    <p>5 Events</p>
+    </div>
+    <ion-thumbnail item-end (click)="addFavouriteEvent('Green')">
+      <img src={{imageSourceGreen}}>
+    </ion-thumbnail>
+    </ion-item>
+    </ion-list>
+</ion-content>
+<ion-footer padding text-center class="bg-style noBorder">
+  <div class = "row" padding>
+   <button ion-button class = "col col-50" color="dark" outline>REGISTER</button>
+  </div>
+</ion-footer>

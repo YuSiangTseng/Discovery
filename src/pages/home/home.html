@@ -1,17 +1,110 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>Home</ion-title>
+    <ion-title class = "selectBackgroundColor">
+    <div class = "gradientColorForText boldFont">
+    DISCOVER
+    </div>
+    </ion-title>
+    <ion-buttons left>
+      <button (click)="Logout()">
+      Bye
+      </button>
+    </ion-buttons>
+    <ion-buttons right>
+    <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
+     <img src="assets/img/userAvatarHome.svg">
+    </button>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <h2>Welcome to Ionic!</h2>
-  <p>
-    This starter project comes with simple tabs-based layout for apps
-    that are going to primarily use a Tabbed UI.
-  </p>
-  <p>
-    Take a look at the <code>src/pages/</code> directory to add or change tabs,
-    update any existing page or create new pages.
-  </p>
-</ion-content>
+  <ion-content class="bg-style">
+  <ion-searchbar padding (change)="getItems($event)" [(ngModel)]="searchItem" (keypress)="dismissKeyBoard($event)"></ion-searchbar>
+  <ion-toolbar padding color="custom-blue">
+    <ion-segment padding color="custom-yellow">
+      <ion-segment-button value="feature" (click)='segmentButtons("feature");'>
+      <div class = "boldFontSegment">
+        FEATURE
+      </div>
+      </ion-segment-button>
+      <ion-segment-button value="trending" (click)='segmentButtons("trending");'>
+      <div class = "boldFontSegment">
+        TRENDING
+      </div>
+      </ion-segment-button>
+      <ion-segment-button value="thisWeek" (click)='segmentButtons("thisWeek");'>
+      <div class = "boldFontSegment">
+        THIS WEEK
+      </div>
+      </ion-segment-button>
+      <ion-segment-button value="thisMonth" (click)='segmentButtons("thisMonth");'>
+      <div class = "boldFontSegment">
+        THIS MONTH
+      </div>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-toolbar>
+    <ion-list class = "removeBottomSpace gradientColorTopToBottom" align-center>
+      <ion-item class = "transparentBackground" no-lines text-wrap *ngFor="let item of eventItems">
+        <ion-card class="displayed" *ngIf = "item.type == 0">
+        <img class="displayed"  height="250 px" src="{{item.imageUrlKey}}" (click)="goToItemDetail($event, item, item.itemIndex)">
+          <ion-card-content no-padding>
+            <ion-row>
+            <ion-col col-9 style = "text-align: left">
+            <B>
+            <div style="background:white; color: black; font-size: 30px; float: left; margin-left: 4vw;" no-padding>{{item.labelKey}}</div></B>
+            <br>
+            <div>
+            <button class="buttonInCard" style="float: left; margin-left: 4vw; background: url('assets/img/circle-add.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'PARTICIPATING', eventDate.getDate(), eventMonth, item.itemIndex)">
+            <div class = "boldFontSegment" style = "margin-left: 6px">
+                I'm going
+            </div>
+            </button>
+            <button class="buttonInCard" style="float: left; margin-left: 0px; background: url('assets/img/star.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'FOLLOWING', eventDate.getDate(), eventMonth, item.itemIndex)">
+            <div class = "boldFontSegment" style = "margin-left: 6px">
+                Follow
+            </div>
+            </button> 
+            </div>
+            </ion-col>
+            <ion-col col-2 style = "margin: auto;">
+            <table border="0" style="color: black;  float:right; margin-right: 3vw; vertical-align: middle; height: 50px; width: 80%; border-color: : transparent">
+            <tr text-center>
+                <td  class = "noBorder" bgcolor="#1C2124" style="color: #43EE7E; height: 60%;" text-center>{{eventDate.getDate()}}</td>
+            </tr>
+            <tr>
+                <td  class = "noBorder" bgcolor="#43EE7E" style="color: #1C2124; height: 40%;" text-center>{{eventMonth}}</td>
+            </tr>
+            </table>
+            </ion-col>
+            </ion-row>
+          </ion-card-content>
+        </ion-card>
+
+      <!-- <span id="native" *ngIf="start != 0">
+      <ion-card>
+      <img src="" id="adCover" style="max-width: 100%; height: auto;" />
+      <ion-card-content text-wrap>
+        <ion-item>
+          <ion-avatar item-left>
+            <img src="" id="adIcon" />
+          </ion-avatar>
+          <h2 id="adTitle"></h2>
+          <p id="adBody"></p>
+        </ion-item>
+        <ion-row>
+          <ion-col center text-left width-70 small style="font-size: x-small;">
+            <span id="adSocialContext" small></span>
+          </ion-col>
+          <ion-col center text-right width-30>
+            <button ion-button small color="secondary" id="adBtn">
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-card-content>
+      </ion-card>
+      </span> -->
+      </ion-item>
+    </ion-list>
+  </ion-content>
+
