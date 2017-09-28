@@ -9,6 +9,8 @@ import { notificationSettingsPage } from '../pages/notificationSettings/notifica
 import { howItWorksPage } from '../pages/howItWorks/howItWorks';
 import { getInTouchPage } from '../pages/getInTouch/getInTouch';
 import { frequentlyAskedQuestionsPage } from '../pages/frequentlyAskedQuestions/frequentlyAskedQuestions';
+import { aboutHighlightPage } from '../pages/aboutHighlight/aboutHighlight';
+import { termsAndConditionsPage } from '../pages/termsAndConditions/termsAndConditions';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ItemDetailPageComponent } from '../components/item-detail-page/item-detail-page';
@@ -66,7 +68,9 @@ import { EmailComposer } from '@ionic-native/email-composer';
     notificationSettingsPage,
     howItWorksPage,
     getInTouchPage,
-    frequentlyAskedQuestionsPage
+    frequentlyAskedQuestionsPage,
+    aboutHighlightPage,
+    termsAndConditionsPage
   ],
   imports: [
     BrowserModule,
@@ -95,7 +99,9 @@ import { EmailComposer } from '@ionic-native/email-composer';
     notificationSettingsPage,
     howItWorksPage,
     getInTouchPage,
-    frequentlyAskedQuestionsPage
+    frequentlyAskedQuestionsPage,
+    aboutHighlightPage,
+    termsAndConditionsPage
   ],
   providers: [
     StatusBar,

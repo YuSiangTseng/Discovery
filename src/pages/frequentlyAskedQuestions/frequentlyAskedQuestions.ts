@@ -17,16 +17,16 @@ export class frequentlyAskedQuestionsPage {
     var answer = document.getElementById("answer" + id);
     var question = document.getElementById("question" + id);
     var image = document.getElementById("imageForbutton" + id);
-    var clicked =  image.getAttribute('src') == 'assets/img/circle-add-frequentlyAskedQuestions.svg'? true : false; 
+    var clicked =  image.getAttribute('src') == 'assets/img/ui-24px-glyph-1_simple-add.svg'? true : false; 
     
     if(clicked) {
       answer.style.color = "#FFEA2C";
       question.style.color = "#FFEA2C"
-      image.setAttribute('src', 'assets/img/sendForGetInTouch.svg');
+      image.setAttribute('src', 'assets/img/ui-24px-glyph-1_simple-delete.svg');
     } else {
       answer.style.color = "#FFEA2C";
       question.style.color = "#DE577B"
-      image.setAttribute('src', 'assets/img/circle-add-frequentlyAskedQuestions.svg');
+      image.setAttribute('src', 'assets/img/ui-24px-glyph-1_simple-add.svg');
     }
 
    switch(id) {

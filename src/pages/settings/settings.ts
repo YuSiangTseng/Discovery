@@ -4,6 +4,8 @@ import { notificationSettingsPage } from '../notificationSettings/notificationSe
 import { howItWorksPage } from '../howItWorks/howItWorks';
 import { getInTouchPage } from '../getInTouch/getInTouch';
 import { frequentlyAskedQuestionsPage } from '../frequentlyAskedQuestions/frequentlyAskedQuestions';
+import { aboutHighlightPage } from '../aboutHighlight/aboutHighlight';
+import { termsAndConditionsPage } from '../termsAndConditions/termsAndConditions';
 
 
 @Component({
@@ -30,6 +32,15 @@ export class settingsPage {
 
   goToFrequentlyAskedQuestions() {
     this.navCtrl.push(frequentlyAskedQuestionsPage);
+  }
+
+  goToAboutHighlight() {
+    this.navCtrl.push(aboutHighlightPage);
+  }
+
+  goToTermsAndConditions() {
+    this.navCtrl.push(termsAndConditionsPage);
+
   }
 
 }

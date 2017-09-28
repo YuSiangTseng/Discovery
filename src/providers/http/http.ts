@@ -27,7 +27,7 @@ export class HttpProvider {
     let body = new FormData();
     body.append('email', email);
     body.append('password', password);
-  	return this.http.post('https://yeswestock.com/JSON/user/auth/login', body, null).timeout(3000).map(res => res.json());
+  	return this.http.post('https://yeswestock.com/JSON/user/auth/login', body, null).timeout(4000).map(res => res.json());
   }
 
   registerYes(email, password, userName, firstName, lastName){
@@ -39,7 +39,7 @@ export class HttpProvider {
     body.append('username', userName);
     body.append('firstname', firstName);
     body.append('lastname', lastName);
-  	return this.http.post('https://yeswestock.com/JSON/user/register', body, null).timeout(3000).map(res => res.json());
+  	return this.http.post('https://yeswestock.com/JSON/user/register', body, null).timeout(4000).map(res => res.json());
   }
 
   getUserDetail(token) {

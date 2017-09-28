@@ -59,7 +59,7 @@ page-notificationSettings {
     width: 9vw;
     height: 9vw;
     background-color: #FBD745;
-    background-image: url("../assets/img/lock.svg");
+    background-image: url("../assets/img/on.svg");
     background-repeat: no-repeat;
     background-position: center;
     /*background-image:url("data:image/svg+xml;utf8,<svg height="100%" width="100%"><text x="50%" y="50%" fill="red">On</text></svg>");*/
@@ -74,9 +74,9 @@ page-notificationSettings {
   .toggle-ios .toggle-inner {
     width: 9vw;
     height: 9vw;
-    background-color: #FBD745;
+    background-color: #DF597C;
     transform: translate3d(3px,1vw,0);
-    background-image: url("../assets/img/calendar.svg");
+    background-image: url("../assets/img/off.svg");
     background-repeat: no-repeat;
     background-position: center;
   }
