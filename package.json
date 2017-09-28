@@ -25,6 +25,7 @@
         "@ionic-native/camera": "^4.2.1",
         "@ionic-native/core": "3.12.1",
         "@ionic-native/date-picker": "^4.2.1",
+        "@ionic-native/email-composer": "^4.2.1",
         "@ionic-native/facebook": "^4.2.1",
         "@ionic-native/google-maps": "^4.1.0",
         "@ionic-native/in-app-browser": "^4.1.0",
@@ -50,6 +51,7 @@
         "cordova-plugin-console": "^1.0.5",
         "cordova-plugin-datepicker": "^0.9.3",
         "cordova-plugin-device": "^1.1.4",
+        "cordova-plugin-email-composer": "^0.8.10",
         "cordova-plugin-extension": "^1.5.2",
         "cordova-plugin-facebook4": "^1.9.1",
         "cordova-plugin-facebookads": "^4.23.2",
@@ -117,7 +119,8 @@
             "de.appplant.cordova.plugin.local-notification": {},
             "cordova-plugin-calendar": {
                 "CALENDAR_USAGE_DESCRIPTION": " "
-            }
+            },
+            "cordova-plugin-email-composer": {}
         },
         "platforms": [
             "android",

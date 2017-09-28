@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForSettingTitle boldFont">
+         Settings
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarSettings.svg">
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list no-lines>
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Get in Touch</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/sendForGetInTouch.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 8px; padding-right: 8px">
+    <div style="color: #FFEA2C; font-size: 5vw; text-align: left;">
+    Do you have a question or need help?
+    </div>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 15px; padding-right: 15px"> 
+    <ion-row class = "ion-row">
+    <ion-col col-12>
+      <ion-item class="bg-style noBorder" style = "background: url(assets/img/arrowDownForGetInTouch.svg) no-repeat left;">
+        <ion-select  class = "inputTextColor" interface = "popover" [(ngModel)]="subject" placeholder = "Please choose a subject">
+            <ion-option class = "inputTextColor" value="subject 1">subject 1</ion-option>
+            <ion-option class = "inputTextColor" value="subject 2">subject 2</ion-option>
+        </ion-select>
+      </ion-item>
+    </ion-col>
+    </ion-row>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 15px; padding-right: 15px"> 
+    <ion-row>
+    <ion-col col-12 style = "padding-left: 0px;">
+    <ion-item class="bg-style noBorder" style = "padding-left: 0px;">
+        <button ion-button style="height: 5vw; color: #FFEA2C; font-size: 5vw; padding-left: 8vw; border: none; background: url(assets/img/email.svg) no-repeat left">
+        Your message
+        </button>
+    </ion-item>
+    </ion-col>
+    </ion-row>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 15px; padding-right: 15px">
+    <ion-textarea class = "ion-row" type = "text" maxlength="500" [(ngModel)]="message" (keypress)="dismissKeyBoard($event)" style = "width: 100%; height: 40vw" placeholder="Please insert your message here">
+    </ion-textarea>
+    </ion-item>
+
+    <ion-item class="bg-style" style = "padding-left: 15px; padding-right: 15px">
+    <div style="text-align: right; font-size: 3.5vw; color: #FFFFFF">
+    {{500 - message.length}} / 500 characters left
+    </div>
+    </ion-item>
+
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-12 style = "height: 100%; text-align: center;">
+    <button ion-button  class = "gradientColorForSettingText" style="width: 60vw; height: 16vw; color: #FFFFFF; font-size: 5vw; border: none;" (click) = "sendMessage()">
+    SEND MESSAGE
+    </button>
+    </ion-col>
+    </ion-row>
+    </ion-item>
+
+
+  </ion-list>
+</ion-content>

@@ -7,6 +7,7 @@ import { AboutPage } from '../pages/about/about';
 import { settingsPage } from '../pages/settings/settings';
 import { notificationSettingsPage } from '../pages/notificationSettings/notificationSettings';
 import { howItWorksPage } from '../pages/howItWorks/howItWorks';
+import { getInTouchPage } from '../pages/getInTouch/getInTouch';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ItemDetailPageComponent } from '../components/item-detail-page/item-detail-page';
@@ -41,6 +42,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Badge } from '@ionic-native/badge';
 import { Calendar } from '@ionic-native/calendar';
+import { EmailComposer } from '@ionic-native/email-composer';
+
 
 
 @NgModule({
@@ -60,7 +63,8 @@ import { Calendar } from '@ionic-native/calendar';
     registerFavouriteEventPage,
     myWorkPlacePage,
     notificationSettingsPage,
-    howItWorksPage
+    howItWorksPage,
+    getInTouchPage
   ],
   imports: [
     BrowserModule,
@@ -87,7 +91,8 @@ import { Calendar } from '@ionic-native/calendar';
     registerFavouriteEventPage,
     myWorkPlacePage,
     notificationSettingsPage,
-    howItWorksPage
+    howItWorksPage,
+    getInTouchPage
   ],
   providers: [
     StatusBar,
@@ -106,7 +111,8 @@ import { Calendar } from '@ionic-native/calendar';
     LocalNotifications,
     localNotification,
     Badge,
-    Calendar
+    Calendar,
+    EmailComposer
   ]
 })
 export class AppModule {}
