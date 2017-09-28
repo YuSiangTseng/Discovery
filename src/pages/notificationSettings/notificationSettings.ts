@@ -21,8 +21,8 @@ export class notificationSettingsPage {
   constructor(public navCtrl: NavController, private storage: Storage, private localNotification: localNotification, private localNotificationInSettings: LocalNotifications, private calendar: Calendar, private shareService: ShareService) {
   	this.dataForCalendar = shareService.getDashboardItemDetail();
   	this.updatePermissionFromSettings();
-	this.getStorageValue();
-	this.setDefaultFocusForNotificationDays();
+  	this.getStorageValue();
+  	this.setDefaultFocusForNotificationDays();
   		
   }
 

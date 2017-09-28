@@ -113,6 +113,20 @@ page-notificationSettings {
     text-align: left !important;
   }
 
+  .shadow {
+    border-radius: 50%;
+    width: 90%;
+    height: 2px;
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: -6px;
+    background: #2E3D3D;
+    border: 5px solid #2E3D3D;
+    margin: -5px auto 0;
+    z-index: 2;
+  }
+
   /*.btn:hover {
     color: #202C2B !important;
     text-decoration: none;

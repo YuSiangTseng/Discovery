@@ -3,6 +3,9 @@ import { NavController } from 'ionic-angular';
 import { notificationSettingsPage } from '../notificationSettings/notificationSettings';
 import { howItWorksPage } from '../howItWorks/howItWorks';
 import { getInTouchPage } from '../getInTouch/getInTouch';
+import { frequentlyAskedQuestionsPage } from '../frequentlyAskedQuestions/frequentlyAskedQuestions';
+
+
 @Component({
   selector: 'page-settings',
   templateUrl: 'settings.html'
@@ -23,6 +26,10 @@ export class settingsPage {
 
   goToGetInTouch() {
   	this.navCtrl.push(getInTouchPage);
+  }
+
+  goToFrequentlyAskedQuestions() {
+    this.navCtrl.push(frequentlyAskedQuestionsPage);
   }
 
 }

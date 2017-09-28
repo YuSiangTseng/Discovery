@@ -1,0 +1,154 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+        <div class = "gradientColorForSettingTitle boldFont">
+         Settings
+        </div>
+    </ion-title>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/userAvatarSettings.svg">
+    </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content class = "bg-style">
+  <ion-list no-lines>
+    <ion-item  class = "bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">Frequently Asked Questions</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/sendForGetInTouch.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <br>
+    <div class = "shadow"></div>
+    </ion-item>
+
+    <ion-item  class = "noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px; background-color: transparent;">
+    <div style = "height: 55px; width: 100%; background-color: transparent;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div id = "question1" style = "display: flex;" class = "boldFontWithColor">
+    <h2>Question 1</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click) = "showAnswer('1')">
+     <img id = "imageForbutton1" src="assets/img/circle-add-frequentlyAskedQuestions.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-12>
+    <div style="white-space: normal; font-size: 5vw" id = "answer1"></div>
+    </ion-col>
+    </ion-row>
+    <div class = "shadow"></div>
+    </ion-item>
+
+
+    <ion-item  class = "noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px; background-color: transparent;">
+    <div style = "height: 55px; width: 100%; background-color: transparent;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div id = "question2" style = "display: flex;" class = "boldFontWithColor">
+    <h2>Question 2</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click) = "showAnswer('2')">
+     <img id = "imageForbutton2" src="assets/img/circle-add-frequentlyAskedQuestions.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-12>
+    <div style="white-space: normal; font-size: 5vw" id = "answer2"></div>
+    </ion-col>
+    </ion-row>
+    <div class = "shadow"></div>
+    </ion-item>
+
+    <ion-item  class = "noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px; background-color: transparent;">
+    <div style = "height: 55px; width: 100%; background-color: transparent;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div id = "question3" style = "display: flex;" class = "boldFontWithColor">
+    <h2>Question 3</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click) = "showAnswer('3')">
+     <img id = "imageForbutton3" src="assets/img/circle-add-frequentlyAskedQuestions.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-12>
+    <div style="white-space: normal; font-size: 5vw" id = "answer3"></div>
+    </ion-col>
+    </ion-row>
+    <div class = "shadow"></div>
+    </ion-item>
+
+    <ion-item  class = "noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px; background-color: transparent;">
+    <div style = "height: 55px; width: 100%; background-color: transparent;">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div id = "question4" style = "display: flex;" class = "boldFontWithColor">
+    <h2>Question 4</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;" (click) = "showAnswer('4')">
+     <img id = "imageForbutton4" src="assets/img/circle-add-frequentlyAskedQuestions.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-12>
+    <div style="white-space: normal; font-size: 5vw" id = "answer4"></div>
+    </ion-col>
+    </ion-row>
+    <div class = "shadow"></div>
+    </ion-item>
+
+    
+
+
+  </ion-list>
+</ion-content>

@@ -8,6 +8,7 @@ import { settingsPage } from '../pages/settings/settings';
 import { notificationSettingsPage } from '../pages/notificationSettings/notificationSettings';
 import { howItWorksPage } from '../pages/howItWorks/howItWorks';
 import { getInTouchPage } from '../pages/getInTouch/getInTouch';
+import { frequentlyAskedQuestionsPage } from '../pages/frequentlyAskedQuestions/frequentlyAskedQuestions';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ItemDetailPageComponent } from '../components/item-detail-page/item-detail-page';
@@ -64,7 +65,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     myWorkPlacePage,
     notificationSettingsPage,
     howItWorksPage,
-    getInTouchPage
+    getInTouchPage,
+    frequentlyAskedQuestionsPage
   ],
   imports: [
     BrowserModule,
@@ -92,7 +94,8 @@ import { EmailComposer } from '@ionic-native/email-composer';
     myWorkPlacePage,
     notificationSettingsPage,
     howItWorksPage,
-    getInTouchPage
+    getInTouchPage,
+    frequentlyAskedQuestionsPage
   ],
   providers: [
     StatusBar,
