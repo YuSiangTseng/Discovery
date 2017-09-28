@@ -6,6 +6,7 @@ import { getInTouchPage } from '../getInTouch/getInTouch';
 import { frequentlyAskedQuestionsPage } from '../frequentlyAskedQuestions/frequentlyAskedQuestions';
 import { aboutHighlightPage } from '../aboutHighlight/aboutHighlight';
 import { termsAndConditionsPage } from '../termsAndConditions/termsAndConditions';
+import { MyAccountPage } from '../myAccount/myAccount';
 
 
 @Component({
@@ -40,7 +41,9 @@ export class settingsPage {
 
   goToTermsAndConditions() {
     this.navCtrl.push(termsAndConditionsPage);
-
   }
 
+  goToMyAccountPage() {
+    this.navCtrl.push(MyAccountPage);
+  }
 }
