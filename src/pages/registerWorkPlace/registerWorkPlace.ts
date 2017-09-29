@@ -120,7 +120,7 @@ export class registerWorkPlacePage {
     "userJobTitle" : this.shareService.userJobTitle, "userKeyStage" : this.shareService.userKeyStage, "userSchoolName" : this.shareService.userSchoolName,
     "userPostcode" : this.shareService.userPostcode, "userCountry" : this.shareService.userCountry, "userTown" : this.shareService.userTown});
 
-    this.shareService.registerPersonalDetail(this.shareService.userEmail, this.shareService.userPassword, this.shareService.userEmail, this.shareService.userFirstName, this.shareService.userLastName)
+    //this.shareService.registerPersonalDetail(this.shareService.userEmail, this.shareService.userPassword, this.shareService.userEmail, this.shareService.userFirstName, this.shareService.userLastName)
 
     this.navCtrl.push(registerFavouriteEventPage);
 

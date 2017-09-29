@@ -1,47 +1,64 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      My Favourite Events
+    <ion-title class = "selectBackgroundColor">
+    <div class = "gradientColorForText boldFont">
+      REGISTER MY FAVOURITE EVENTS
+    </div>
     </ion-title>
   </ion-navbar>
 </ion-header>
 
 <ion-content class = "bg-style">
-    <ion-list>
-    <!-- <ion-item class="displayed"> -->
-    <div class = "displayed">
-      <img class="displayed" src="assets/img/events.jpg">
-    </div>
+    <ion-list class = "bg-style removeBottomSpace" no-lines style = "margin-left: 0px">
     
-    <!-- </ion-item> -->
-    <ion-item class="bg-style">
-    <ion-thumbnail item-start>
-      <img src="assets/img/star.png">
-    </ion-thumbnail>
-    <div class="textPosition">
-    <h2>Mango</h2>
-    <p>5 Events</p>
+    <ion-item  class = "bg-style" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px; margin-bottom: 6px">
+    <div style = "height: 55px; width: 100%" class = "gradientColor">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%; margin-top: 7px">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2  style = "padding-top: 2px" class="boldFont">My Favourite Events</h2>
     </div>
-    <ion-thumbnail item-end (click)="addFavouriteEvent('Mango')">
-      <img src={{imageSourceMango}}>
-    </ion-thumbnail>
-    </ion-item>
-    <ion-item class="bg-style">
-    <ion-thumbnail item-start>
-      <img src="assets/img/star.png">
-    </ion-thumbnail>
-    <div class="textPosition">
-    <h2>Green</h2>
-    <p>5 Events</p>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <button style="background-color: transparent;">
+     <img src="assets/img/starMyAccount.svg" style = "padding-top: 2px">
+    </button>
+    </ion-buttons>
     </div>
-    <ion-thumbnail item-end (click)="addFavouriteEvent('Green')">
-      <img src={{imageSourceGreen}}>
-    </ion-thumbnail>
+    </ion-col>
+    </ion-row>
+    </div>
     </ion-item>
+
+
+    <ion-item class="bg-style noBorder" style = "padding-left: 8px; padding-right: 8px; margin-bottom: 3px" *ngFor="let item of dummyDataToShowWithImgUrl; let i = index">
+    <ion-row>
+    <ion-col col-2>
+    <ion-thumbnail item-start id = "thumbnail{{i}}" class = "gradientColor styleForThumbnail" style = "margin-left: 2px">
+      <img id = "eventIcon{{i}}" src = {{item.eventImageUrl}} style="width:100%; height: 100%">
+    </ion-thumbnail>
+    </ion-col>
+    <ion-col col-8 style = "margin-top: 7px">
+    <div class="textPosition">
+    <h2 id = "eventName{{i}}" style = "color: #24DE8A;">{{item.eventName}}</h2>
+    <p>{{item.eventAmount}} Events</p>
+    </div>
+    </ion-col>
+    <ion-col col-2>
+    <ion-thumbnail item-end (click)="addFavouriteEvent('Mango')" >
+      <img id = {{i}} src = "assets/img/addForFavouriteEvents.svg" (click) = "addOrDeleteFavourite(i, item.eventName)">
+    </ion-thumbnail>
+    </ion-col>
+    </ion-row>
+    <div class = "ion-row"></div>
+    </ion-item>
+
     </ion-list>
 </ion-content>
-<ion-footer padding text-center class="bg-style noBorder">
-  <div class = "row" padding>
-   <button ion-button class = "col col-50" color="dark" outline>REGISTER</button>
-  </div>
+
+
+<ion-footer class = "foo" no-padding text-center>
+  <button ion-button color="light" class = "col buttonFourCorners gradientColor noBorder boldFont" style = "height: 100%" outline>REGISTER</button>
 </ion-footer>

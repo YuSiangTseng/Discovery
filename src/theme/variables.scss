@@ -55,6 +55,15 @@ $app-direction: ltr;
   -webkit-text-fill-color: transparent;
 }
 
+.gradientColorForImageTopToBottom {
+  background: -webkit-linear-gradient(#00BEDC,#00DD8D);
+  background: -o-linear-gradient(#00BEDC,#00DD8D);
+  background: -moz-linear-gradient(#00BEDC,#00DD8D);
+  background: linear-gradient(#00BEDC,#00DD8D);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .gradientColorForTextDashBoard {
   background: -webkit-linear-gradient(left,#DA4686,#A851A6);
   background: -o-linear-gradient(right,#DA4686,#A851A6);

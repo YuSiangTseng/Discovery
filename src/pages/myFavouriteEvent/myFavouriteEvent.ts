@@ -20,7 +20,14 @@ export class MyFavouriteEventPage {
   private selected: any = moment();
   private date: any = moment().toISOString();
 
+  private dummyDataToShowWithImgUrl = [];
+
   constructor(public platform: Platform ,public navCtrl: NavController, private storage: Storage, public calendarCtrl: CalendarController) {
+  	
+  	this.getEventsFromServer();
+
+
+
   	this.storage.get('addFavouriteEventCount').then((addFavouriteEventCount) => {
 
 
@@ -50,13 +57,51 @@ export class MyFavouriteEventPage {
 
   }
 
-  @ViewChild('datePicker') datePicker;
+  getEventsFromServer() {
+  	  var dummyDataFromServer = [{"eventName" : "BIRTHDAYS", "eventAmount" : "5"}, {"eventName" : "CONFERENCES", "eventAmount" : "7"}, {"eventName" : "MEETINGS", "eventAmount" : "25"}, {"eventName" : "SEMINARS", "eventAmount" : "9"}];
+  	  for(var item in dummyDataFromServer) {
+  	  	var dataInformation = dummyDataFromServer[item];
+  	  	switch(dataInformation.eventName) {
+  	  		case "BIRTHDAYS" :
+  	  		this.dummyDataToShowWithImgUrl.push({"eventName" : dataInformation.eventName, "eventAmount" : dataInformation.eventAmount, "eventImageUrl" : "assets/img/BIRTHDAYS.svg"});
+  	  		break;
+  	  		case "CONFERENCES" :
+  	  		this.dummyDataToShowWithImgUrl.push({"eventName" : dataInformation.eventName, "eventAmount" : dataInformation.eventAmount, "eventImageUrl" : "assets/img/CONFERENCES.svg"});
+  	  		break;
+  	  		case "MEETINGS" :
+  	  		this.dummyDataToShowWithImgUrl.push({"eventName" : dataInformation.eventName, "eventAmount" : dataInformation.eventAmount, "eventImageUrl" : "assets/img/MEETINGS.svg"});
+  	  		break;
+  	  		case "SEMINARS" :
+  	  		this.dummyDataToShowWithImgUrl.push({"eventName" : dataInformation.eventName, "eventAmount" : dataInformation.eventAmount, "eventImageUrl" : "assets/img/SEMINARS.svg"});
+  	  		break;
+  	  	}
+  	  }
+  }
 
-  dateChanged(date) {
-  		const { day, month, year } = date;
-  		//this.selected.year(year.value).month(month.text).date(day.value);
-  		this.birthday  =   date.day + '/' + date.month + '/' +  date.year;
-  };	
+  addOrDeleteFavourite(id, event) {
+  	var image = document.getElementById(id);
+  	var eventName = document.getElementById("eventName" + id);
+  	var thumbnail = document.getElementById("thumbnail" + id);
+  	var eventIcon = document.getElementById("eventIcon" + id);
+    var clicked =  image.getAttribute('src') == 'assets/img/addForFavouriteEvents.svg'? true : false; 
+
+    if(clicked) { 
+      image.setAttribute('src', 'assets/img/deleteForFavouriteEvents.svg');
+      eventIcon.setAttribute('src', 'assets/img/' + event + "-TRANSPARENT.svg" );
+      eventIcon.classList.add('gradientColorForImageTopToBottom');
+      eventName.style.color = "#FFFFFF";
+      thumbnail.classList.remove('gradientColor');
+      thumbnail.classList.add('whiteBackground');
+    } else {
+      image.setAttribute('src', 'assets/img/addForFavouriteEvents.svg');
+      eventIcon.setAttribute('src', 'assets/img/' + event + ".svg" );
+      eventIcon.classList.remove('gradientColorForImageTopToBottom');
+      eventName.style.color = "#24DE8A";
+      thumbnail.classList.remove('whiteBackground');
+      thumbnail.classList.add('gradientColor');
+    }
+  }
+  
 
   addFavouriteEvent(Event) {
 	  if(Event == 'Mango') {
