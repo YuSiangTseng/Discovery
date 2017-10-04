@@ -97,7 +97,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="First Name" [(ngModel)]="firstName" (ionBlur) = "updateTickIcon('firstName')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="First Name" [(ngModel)]="firstName" (ionBlur) = "updateTickIcon('firstName')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -108,7 +108,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="Last Name" [(ngModel)]="lastName" (ionBlur) = "updateTickIcon('lastName')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="Last Name" [(ngModel)]="lastName" (ionBlur) = "updateTickIcon('lastName')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -134,7 +134,7 @@
     <ion-row class = "ion-row">
     <ion-col col-9>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" class = "inputTextColor" type="email" placeholder="Email Address" [(ngModel)]="email" (ionBlur) = "updateTickIcon('email')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" disabled class = "inputTextColor" type="email" placeholder="Email Address" [(ngModel)]="email" (ionBlur) = "updateTickIcon('email')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-3 text-center style="align-self: center;">
@@ -145,7 +145,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type={{type}} placeholder="Password" name="password" id="password" [(ngModel)]="password" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type={{type}} placeholder="Password" name="password" id="password" [(ngModel)]="password" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">

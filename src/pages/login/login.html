@@ -25,7 +25,7 @@
     </ion-col>
     <ion-col col-10 text-center style="align-self: center;">
         <ion-item class="bg-style noBorder">
-          <ion-input  class = "inputTextColor" type="email" floating placeholder="Email address" [(ngModel)]="email" (keypress)="dismissKeyBoard($event)"></ion-input>
+          <ion-input  class = "inputTextColor" type="email" floating placeholder="Email address" [(ngModel)]="email" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
         </ion-item>
     </ion-col>
     </ion-row>
@@ -36,7 +36,7 @@
     </ion-col>
     <ion-col col-10 text-center style="align-self: center;">
         <ion-item class="bg-style noBorder">
-          <ion-input class = "inputTextColor" type="password" floating placeholder="Password" [(ngModel)]="password" (keypress)="dismissKeyBoard($event)"></ion-input>
+          <ion-input class = "inputTextColor" type="password" floating placeholder="Password" [(ngModel)]="password" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
         </ion-item>
     </ion-col>
     </ion-row>

@@ -65,7 +65,7 @@ export class HttpProvider {
     body.append('email', email);
     body.append('password', password);
     body.append('token', token);
-  	return this.http.post('http://35.177.35.62/api/getMemberDetails', body).map(res => res.json());
+  	return this.http.post('http://35.177.35.62/api/getMemberDetails', body).timeout(4000).map(res => res.json());
   }
 
   updateUserDetail(token, email, password, title, birthday, name) {
@@ -78,7 +78,7 @@ export class HttpProvider {
     body.append('title', title);
     body.append('date_of_birth', birthday);
     body.append('name', name);
-    return this.http.post('http://35.177.35.62/api/updateMemberDetails', body).map(res => res.json());
+    return this.http.post('http://35.177.35.62/api/updateMemberDetails', body).timeout(4000).map(res => res.json());
   }
 
 }

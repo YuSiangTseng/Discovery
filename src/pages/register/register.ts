@@ -13,6 +13,7 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { LoginPage } from '../login/login';
 import { registerWorkPlacePage } from '../registerWorkPlace/registerWorkPlace';
 import { ShareService } from '../ShareService/ShareService';
+import { Utils } from '../../providers/utils/utils';
 
 @Component({
   selector: 'page-register',
@@ -38,7 +39,7 @@ export class registerPage {
   private selected: any = moment();
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/userAvatar.svg";
-  constructor(public navCtrl: NavController, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService) {
+  constructor(public navCtrl: NavController, private utils: Utils, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService) {
   	  // storage.get('token').then((val) => {
   	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
     	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -175,12 +176,6 @@ export class registerPage {
 		// 	this.tickImageForTitle = "";
 		// }
 	  		
-  }
-
-  dismissKeyBoard(event) {
-  	if(event.keyCode == 13) {
-  		this.keyboard.close();
-  	}
   }
 
   goToTabsPage() {

@@ -2,7 +2,6 @@ import { Component, ViewChild} from '@angular/core';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Nav, Platform } from 'ionic-angular';
-import {ShareService} from '../pages/ShareService/ShareService';
 
 import { TabsPage } from '../pages/tabs/tabs';
 import { LoginPage } from '../pages/login/login';
@@ -10,15 +9,14 @@ import { Storage } from '@ionic/storage';
 import { Badge } from '@ionic-native/badge';
 
 @Component({
-  templateUrl: 'app.html',
-  providers: [ShareService]
+  templateUrl: 'app.html'
 })
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any;
 
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private shareService: ShareService, private storage: Storage, private badge: Badge) {
+  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, private storage: Storage, private badge: Badge) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.

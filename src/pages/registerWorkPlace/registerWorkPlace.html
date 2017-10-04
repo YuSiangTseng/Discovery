@@ -56,7 +56,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="Key Stage" [(ngModel)]="userKeyStage" (ionBlur) = "updateTickIcon('userKeyStage')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="Key Stage" [(ngModel)]="userKeyStage" (ionBlur) = "updateTickIcon('userKeyStage')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -67,7 +67,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="School Name" [(ngModel)]="userSchoolName" (ionBlur) = "updateTickIcon('userSchoolName')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="School Name" [(ngModel)]="userSchoolName" (ionBlur) = "updateTickIcon('userSchoolName')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -78,7 +78,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="Postcode" [(ngModel)]="userPostcode" (ionBlur) = "updateTickIcon('userPostcode')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="Postcode" [(ngModel)]="userPostcode" (ionBlur) = "updateTickIcon('userPostcode')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -103,7 +103,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type="text" placeholder="Town" [(ngModel)]="userTown" (ionBlur) = "updateTickIcon('userTown')" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type="text" placeholder="Town" [(ngModel)]="userTown" (ionBlur) = "updateTickIcon('userTown')" (keypress)="utils.dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">

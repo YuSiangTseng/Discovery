@@ -29,6 +29,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HttpProvider } from '../providers/http/http';
+import { Utils } from '../providers/utils/utils';
 import { localNotification } from '../providers/localNotification/localNotification';
 import { HttpModule } from '@angular/http';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player'
@@ -41,7 +42,7 @@ import { Keychain } from '@ionic-native/keychain';
 import { CalendarModule } from "ion2-calendar";
 import { MomentModule } from 'angular2-moment';
 import { Camera } from '@ionic-native/camera';
-import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
+import { Facebook } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
 import { LocalNotifications } from '@ionic-native/local-notifications';
 import { Badge } from '@ionic-native/badge';
@@ -111,6 +112,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpProvider,
+    Utils,
     YoutubeVideoPlayer,
     SocialSharing,
     GoogleMaps,

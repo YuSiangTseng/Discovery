@@ -8,6 +8,7 @@ import { Keychain } from '@ionic-native/keychain';
 import { registerPage } from '../register/register';
 import CryptoJS from 'crypto-js';
 import { Keyboard } from '@ionic-native/keyboard';
+import { Utils } from '../../providers/utils/utils';
 
 @Component({
   selector: 'page-login',
@@ -26,7 +27,7 @@ export class LoginPage {
   loginPassword = '';
 
 
-  constructor(public navCtrl: NavController,  public loadingCtrl: LoadingController, private alertCtrl: AlertController, private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, private utils: Utils, public loadingCtrl: LoadingController, private alertCtrl: AlertController, private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard) {
   		//this.tabsElement = document.querySelector('#tabs ion-tabs');
   		//this.tabBarElement = document.querySelector('#tabs ion-tabbar-section');
   }
@@ -94,12 +95,6 @@ export class LoginPage {
 
   goToRegisterPage() {
   		this.navCtrl.setRoot(registerPage)
-  }
-
-  dismissKeyBoard(event) {
-  	if(event.keyCode == 13) {
-  		this.keyboard.close();
-  	}
   }
 
 }

@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
-import { NavController, LoadingController, IonicApp, App } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
+import { Utils } from '../../providers/utils/utils';
 import { ItemDetailPageComponent } from '../../components/item-detail-page/item-detail-page';
 import { Platform } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, Marker, MarkerOptions, CameraPosition } from '@ionic-native/google-maps';
+import { GoogleMaps } from '@ionic-native/google-maps';
 import { ShareService } from '../ShareService/ShareService';
 import { Storage } from '@ionic/storage';
 import { LoginPage } from '../login/login';
@@ -22,7 +23,6 @@ declare var cordova: any;
 export class HomePage {
 
   DiscoveryJsonData: any;
-  loading: any;
   searchItem = '';
   smoothieItems: any;
   label: any;
@@ -35,69 +35,40 @@ export class HomePage {
   index: any;
   start: any = 0;
 
-  constructor(public navCtrl: NavController, private httpProvider: HttpProvider, public loadingCtrl: LoadingController, public platform: Platform, private googleMaps: GoogleMaps, private shareService: ShareService, private storage: Storage, private app: App, private keyboard: Keyboard, private localNotification: localNotification, private badge: Badge) {
+  constructor(public navCtrl: NavController, private httpProvider: HttpProvider, public utils: Utils, public platform: Platform, private googleMaps: GoogleMaps, private shareService: ShareService, private storage: Storage, private app: App, private keyboard: Keyboard, private localNotification: localNotification, private badge: Badge) {
     		
-    // cordova.plugins.notification.local.registerPermission(function (granted) {
-    //   this.storage.set('switchForNotification', granted);
-    // }.bind(this));
+    
+    // //temporary register location notification (need to move to somewhere else if it's necessary) 
+    if (this.platform.is('cordova')) {
+      cordova.plugins.notification.local.registerPermission(function (granted) {
+        this.storage.set('switchForNotification', granted);
+      }.bind(this));
+    }
+    
 
-    this.loading = this.loadingCtrl.create({
-      content: `
-      <ion-spinner ></ion-spinner>`
-    });
+    //get data from the server, display the events users are interested in or display all events if users didnt select any favourite events
     this.getdata();
-    this.eventMonth = this.getMonth(new Date());
-    // document.addEventListener('resume', () => {
-    //     console.log("app1");
-    //     this.badge.clear();
-    // });
 
-    // platform.ready().then(() => {
-    //   if(FacebookAds)
-    //   {
-    //     FacebookAds.createNativeAd('103360493736582_126136838125614');
-    //     this.start = 1;
-    //     FacebookAds.setOptions({
-    //       isTesting: true,
-    //       deviceHash: 'e76b3000c917796885256817988ec925d7ab58e1'
-    //     });
-    //   }
- 
-    //   document.addEventListener("onAdLoaded", function(data){
-    //     let temp: any = data;
- 
-    //     if(temp.adType == "native")
-    //     {
- 
-    //       document.getElementById('adIcon').setAttribute("src", temp.adRes.icon.url);
-    //       document.getElementById('adCover').setAttribute("src", temp.adRes.coverImage.url);
-    //       document.getElementById('adTitle').innerHTML = temp.adRes.title;
-    //       document.getElementById('adBody').innerHTML = temp.adRes.body;
-    //       document.getElementById('adSocialContext').innerHTML = temp.adRes.socialContext;
-    //       document.getElementById('adBtn').innerHTML = temp.adRes.buttonText;
-    //       console.log("right");
-    //     }
-    //     console.log("wrong");
- 
-    //   });
+    //temporary event month, the date needs to be retrieved from the server
+    this.eventMonth = this.utils.getMonth(new Date());
 
-    //   document.addEventListener('onAdFailLoad', function(data) {
-    //     alert(data);
-    //   });
- 
-    // });
+    
   }
 
   getdata(){
+
     var itemIndex = 0;
-    this.loading.present();
+    this.utils.createSpinnerThenSpin();
+
     this.httpProvider.getJsonData().subscribe(
       result => {
+        this.utils.dismissSpinner();
         this.DiscoveryJsonData = result.hits;
         this.smoothieItems = Object.keys(this.DiscoveryJsonData).map(function(key) {
-  			return [result.hits[key]];
-  		});
-  		for(var item in result.hits) {
+  			   return [result.hits[key]];
+  		  });
+  		
+      for(var item in result.hits) {
 
   			if (this.DiscoveryJsonData.hasOwnProperty(item)) {
   				var value = result.hits[item]; 
@@ -106,77 +77,31 @@ export class HomePage {
           itemIndex = itemIndex + 1;
   			}
   		}
+
   		this.data = this.eventItems
       //temp localNotificationTesting
       this.localNotification.upcomingEvents = this.eventItems;
       //this.localNotification.sendLocalNotification();
-      },
-      err =>{
-        console.error("Error : "+err);
-      } ,
-      () => {
-        this.loading.dismiss();
-        this.storage.get('green').then((val) => {
-          if(val != null) {
-            this.eventItems = [];
-          } 
-        });
-
-        this.storage.get('mango').then((val) => {
-          if(val != null) {
-            this.eventItems = [];
-          }
-        });
-
-
-        this.storage.get('mango').then((val) => {
-        if(val != null) {
-            for(var item in this.data) {
-              if (this.data.hasOwnProperty(item)) {
-              var value = this.data[item]
-              if(value.labelKey.toLowerCase().includes(val.toLowerCase())) {
-              console.log(val);
-                this.eventItems.push({"type" : 0, "imageUrlKey":value.imageUrlKey, "labelKey":value.labelKey,"itemIndex":value.itemIndex, "moreInformation":value.moreInformation });
-              }
-            }
-          }
-        
-        }
-        });
-
-        this.storage.get('green').then((val) => {
-        if(val != null) {
-            for(var item in this.data) {
-              if (this.data.hasOwnProperty(item)) {
-              var value = this.data[item]
-              if(value.labelKey.toLowerCase().includes(val.toLowerCase())) {
-              console.log(val);
-                this.eventItems.push({"type" : 0, "imageUrlKey":value.imageUrlKey, "labelKey":value.labelKey,"itemIndex":value.itemIndex, "moreInformation":value.moreInformation });
-              }
-            }
-          }
-        
-        }
-        });
+      }, err =>{
+        this.utils.dismissSpinner();
       }
     );
    }
 
+
+   //for searching events
    getItems() {
-   this.loading = this.loadingCtrl.create({
-      content: `
-      <ion-spinner ></ion-spinner>`
-    });
- 		this.eventItems = [];
- 		for(var item in this.data) {
- 			if (this.data.hasOwnProperty(item)) {
- 				var value = this.data[item]
- 				if(value.labelKey.toLowerCase().includes(this.searchItem.toLowerCase())) {
- 					this.eventItems.push({"type" : 0, "imageUrlKey":value.imageUrlKey, "labelKey":value.labelKey, "itemIndex":value.itemIndex, "moreInformation":value.moreInformation });
- 				}
- 			}
- 		}
- 		this.loading.dismiss();
+      this.utils.createSpinnerThenSpin();
+    	this.eventItems = [];
+    	for(var item in this.data) {
+    		if (this.data.hasOwnProperty(item)) {
+    			var value = this.data[item]
+    			if(value.labelKey.toLowerCase().includes(this.searchItem.toLowerCase())) {
+    				this.eventItems.push({"type" : 0, "imageUrlKey":value.imageUrlKey, "labelKey":value.labelKey, "itemIndex":value.itemIndex, "moreInformation":value.moreInformation });
+    			}
+    		}
+    	}
+      this.utils.dismissSpinner();
    }
 
    goToItemDetail(event, item, i) {
@@ -184,11 +109,7 @@ export class HomePage {
    }
 
    segmentButtons(segmentButtonName) {
-   	  this.loading = this.loadingCtrl.create({
-      content: `
-      <ion-spinner ></ion-spinner>`
-      });
-   		console.log(this.searchItem)
+      this.utils.createSpinnerThenSpin();
    		this.eventItems = [];
    		for(var item in this.data) {
    			if (this.data.hasOwnProperty(item)) {
@@ -218,7 +139,7 @@ export class HomePage {
    				
    			}
    		}
-   		this.loading.dismiss();
+      this.utils.dismissSpinner();
    		
    }
 

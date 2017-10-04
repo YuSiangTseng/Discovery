@@ -10,6 +10,7 @@ import { Camera } from 'ionic-native';
 import { Keyboard } from '@ionic-native/keyboard';
 import { registerFavouriteEventPage } from '../registerFavouriteEvent/registerFavouriteEvent';
 import { ShareService } from '../ShareService/ShareService';
+import { Utils } from '../../providers/utils/utils';
 
 @Component({
   selector: 'page-registerWorkPlace',
@@ -39,7 +40,7 @@ export class registerWorkPlacePage {
   private selected: any = moment();
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/star.png";
-  constructor(public navCtrl: NavController, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard, private shareService: ShareService) {
+  constructor(public navCtrl: NavController, private platform: Platform, private utils: Utils,private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard, private shareService: ShareService) {
   	  // storage.get('token').then((val) => {
   	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
     	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
