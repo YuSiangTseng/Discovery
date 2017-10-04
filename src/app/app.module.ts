@@ -14,6 +14,7 @@ import { termsAndConditionsPage } from '../pages/termsAndConditions/termsAndCond
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 import { ItemDetailPageComponent } from '../components/item-detail-page/item-detail-page';
+import { listOfParticipantsPage } from '../components/listOfParticipants/listOfParticipants';
 import { LoginPage } from '../pages/login/login';
 import { MyAccountPage } from '../pages/myAccount/myAccount';
 import { MyDetailPage } from '../pages/myDetail/myDetail';
@@ -57,6 +58,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HomePage,
     TabsPage,
     ItemDetailPageComponent,
+    listOfParticipantsPage,
     LoginPage,
     MyAccountPage,
     MyDetailPage,
@@ -88,6 +90,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     HomePage,
     TabsPage,
     ItemDetailPageComponent,
+    listOfParticipantsPage,
     LoginPage,
     MyAccountPage,
     MyDetailPage,

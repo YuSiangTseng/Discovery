@@ -12,13 +12,13 @@
     </ion-buttons>
     <ion-buttons right>
     <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
-     <img src="assets/img/userAvatarHome.svg">
+     <img src = "assets/img/userAvatarHome.svg">
     </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-  <ion-content class="bg-style">
+  <ion-content class = "bg-style">
   <ion-searchbar padding (change)="getItems($event)" [(ngModel)]="searchItem" (keypress)="dismissKeyBoard($event)"></ion-searchbar>
   <ion-toolbar padding color="custom-blue">
     <ion-segment padding color="custom-yellow">
@@ -46,8 +46,8 @@
   </ion-toolbar>
     <ion-list class = "removeBottomSpace gradientColorTopToBottom" align-center>
       <ion-item class = "transparentBackground" no-lines text-wrap *ngFor="let item of eventItems">
-        <ion-card class="displayed" *ngIf = "item.type == 0">
-        <img class="displayed"  height="250 px" src="{{item.imageUrlKey}}" (click)="goToItemDetail($event, item, item.itemIndex)">
+        <ion-card class = "displayed" *ngIf = "item.type == 0">
+        <img class = "displayed"  height="250 px" src="{{item.imageUrlKey}}" (click)="goToItemDetail($event, item, item.itemIndex)">
           <ion-card-content no-padding>
             <ion-row>
             <ion-col col-9 style = "text-align: left">
@@ -55,12 +55,12 @@
             <div style="background:white; color: black; font-size: 30px; float: left; margin-left: 4vw;" no-padding>{{item.labelKey}}</div></B>
             <br>
             <div>
-            <button class="buttonInCard" style="float: left; margin-left: 4vw; background: url('assets/img/circle-add.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'PARTICIPATING', eventDate.getDate(), eventMonth, item.itemIndex)">
+            <button class = "buttonInCard" style="float: left; margin-left: 4vw; background: url('assets/img/circle-add.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'PARTICIPATING', eventDate.getDate(), eventMonth, item.itemIndex)">
             <div class = "boldFontSegment" style = "margin-left: 6px">
                 I'm going
             </div>
             </button>
-            <button class="buttonInCard" style="float: left; margin-left: 0px; background: url('assets/img/star.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'FOLLOWING', eventDate.getDate(), eventMonth, item.itemIndex)">
+            <button class = "buttonInCard" style="float: left; margin-left: 0px; background: url('assets/img/star.svg') left center no-repeat;" no-padding (click)="saveToDashboard($event, item, 'FOLLOWING', eventDate.getDate(), eventMonth, item.itemIndex)">
             <div class = "boldFontSegment" style = "margin-left: 6px">
                 Follow
             </div>

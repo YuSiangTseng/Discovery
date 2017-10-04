@@ -48,24 +48,20 @@ export class registerPage {
      //  });
   }
 
-  getUserDetail(token) {
-  	 this.httpProvider.getUserDetail(token).subscribe(
-        result => {
-      		this.userName = result["first_name"] + "  " + result["last_name"];
-      		//this.email = result["email"];
-  		});
-  }
-
-  goToTabsPage() {
-  	this.navCtrl.setRoot(TabsPage);
-  }
+  // getUserDetail(token) {
+  // 	 this.httpProvider.getUserDetail(token).subscribe(
+  //       result => {
+  //     		this.userName = result["first_name"] + "  " + result["last_name"];
+  //     		//this.email = result["email"];
+  // 		});
+  // }
 
   @ViewChild('datePicker') datePicker;
 
   dateChanged(date) {
   		const { day, month, year } = date;
   		//this.selected.year(year.value).month(month.text).date(day.value);
-  		this.birthday  =   date.day + '/' + date.month + '/' +  date.year;
+  		this.birthday  =   date.year + '-' + date.month + '-' +  date.day;
   }
 
   showHidePass() {
@@ -185,6 +181,10 @@ export class registerPage {
   	if(event.keyCode == 13) {
   		this.keyboard.close();
   	}
+  }
+
+  goToTabsPage() {
+    this.navCtrl.setRoot(TabsPage);
   }
 
   goToLoginPage() {

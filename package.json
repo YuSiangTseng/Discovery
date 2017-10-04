@@ -123,7 +123,6 @@
             "cordova-plugin-email-composer": {}
         },
         "platforms": [
-            "android",
             "browser",
             "ios"
         ]

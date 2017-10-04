@@ -1,0 +1,48 @@
+listOfParticipants {
+	
+  .bg-style {
+    background: #87CEEB;
+    width:100%;
+  }
+  .displayed {
+  	width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .buttonFourCorners {
+    border-radius: 0px;
+  }
+
+  .transparentBackground {
+    background-color: transparent;
+  }
+
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .button {
+    color: yellow;
+    border-color: yellow;
+    border-style: solid;
+    border-right: 1px solid yellow;
+    border-left: 1px solid yellow; 
+    border-top: 1px solid yellow;
+    border-bottom: 1px solid yellow; 
+    background-color: transparent;
+    text-align: center;
+  }
+
+
+  
+
+
+}
+
+ion-app._gmaps_cdv_ .nav-decor{
+  		background-color: #505050 !important;
+}
+

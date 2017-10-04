@@ -32,23 +32,21 @@ export class ShareService {
   		
   }
 
-
-  registerPersonalDetail(email, password, userName, firstName, lastName) {
-    this.getYesData(email, password, userName, firstName, lastName);
-  }
-
-  getYesData(email, password, userName, firstName, lastName) {
-      this.httpProvider.registerYes(email, password, userName, firstName, lastName).subscribe(
+  registerDiscoveryAccount(email, password) {
+    this.httpProvider.registerDiscoveryAccount(email, password).subscribe(
         result => {
        
-          if(result["result"] == true) {
-            this.httpProvider.getJsonDataYes(email, password).subscribe(
+          if(result["token"] != null) {
+            this.httpProvider.loginDiscoveryAccount(email, password).subscribe(
             result => {
-              if(result["success"] == true) {
+              if(result["token"] != null) {
                 this.storage.set('login', true);
-                var encryptedAES = CryptoJS.AES.encrypt(result["token"], "My Secret Token").toString();
-                this.storage.set('token', encryptedAES);
-                console.log("token saved");
+                var encryptedToken = CryptoJS.AES.encrypt(result["token"], "My Secret Token").toString();
+                var encryptedEmail = CryptoJS.AES.encrypt(email, "My Secret Email").toString();
+                var encryptedPassword = CryptoJS.AES.encrypt(password, "My Secret Password").toString();
+                this.storage.set('token', encryptedToken);
+                this.storage.set('email', encryptedEmail);
+                this.storage.set('password', encryptedPassword);
               } else {
                 this.storage.set('login', false);
               }
@@ -57,8 +55,34 @@ export class ShareService {
               console.log("bad");
           }
       });
-
   }
+
+  // registerPersonalDetail(email, password, userName, firstName, lastName) {
+  //   this.getYesData(email, password, userName, firstName, lastName);
+  // }
+
+  // getYesData(email, password, userName, firstName, lastName) {
+  //     this.httpProvider.registerYes(email, password, userName, firstName, lastName).subscribe(
+  //       result => {
+       
+  //         if(result["result"] == true) {
+  //           this.httpProvider.getJsonDataYes(email, password).subscribe(
+  //           result => {
+  //             if(result["success"] == true) {
+  //               this.storage.set('login', true);
+  //               var encryptedAES = CryptoJS.AES.encrypt(result["token"], "My Secret Token").toString();
+  //               this.storage.set('token', encryptedAES);
+  //               console.log("token saved");
+  //             } else {
+  //               this.storage.set('login', false);
+  //             }
+  //           });
+  //         } else {
+  //             console.log("bad");
+  //         }
+  //     });
+
+  // }
 
   setData(event, item, eventTag, eventDate, eventMonth, index) {
 

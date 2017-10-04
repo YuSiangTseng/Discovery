@@ -28,6 +28,10 @@ export class MyDetailPage {
   gender = '';
   type = "password";
   personTitle = "";
+  password = "";
+
+  tempEmail = "";
+  tempPassword = "";
 
 
   tickImageForFirstName = '';
@@ -38,34 +42,69 @@ export class MyDetailPage {
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/userAvatar.svg";
   constructor(public navCtrl: NavController, private platform: Platform, public loadingCtrl: LoadingController, private httpProvider: HttpProvider, private storage: Storage, private keychain: Keychain, public fb: Facebook, private keyboard: Keyboard) {
-  	  storage.get('token').then((val) => {
-  	  	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
-    	  var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
-      	this.token = plaintext;
-        this.loading = this.loadingCtrl.create({
-        content: `
-          <ion-spinner ></ion-spinner>`
+       storage.get('email').then((val) => {
+          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
+          var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
+          this.tempEmail = email;
         });
-        this.loading.present();
-      	this.getUserDetail(this.token);
+       storage.get('password').then((val) => {
+          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Password");
+          var password = decryptedBytes.toString(CryptoJS.enc.Utf8);
+          this.tempPassword = password;
+        });
+
+
+      storage.get('token').then((val) => {
+  	  	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
+    	  var token = decryptedBytes.toString(CryptoJS.enc.Utf8);
+      	this.token = token;
+
+        this.createSpinnerThenSpin();
+      	this.getUserDetail(this.token, this.tempEmail, this.tempPassword);
       	this.keyboard.hideKeyboardAccessoryBar(true);
       });
   }
 
-  getUserDetail(token) {
-  	 this.httpProvider.getUserDetail(token).subscribe(
+  createSpinnerThenSpin() {
+    this.loading = this.loadingCtrl.create({
+        content: `
+          <ion-spinner ></ion-spinner>`
+        });
+    this.loading.present();
+  }
+
+  dismissSpinner() {
+    if(this.loading != null) {
+      this.loading.dismiss();
+    }
+  }
+
+
+
+  getUserDetail(token, email, password) {
+  	 this.httpProvider.getUserDetail(token, email, password).subscribe(
         result => {
-          console.log(token);
-          this.loading.dismiss();
-      		this.userName = result["first_name"] + "  " + result["last_name"];
-      		this.email = result["email"];
-          this.firstName = result["first_name"];
-          this.lastName = result["last_name"];
+          this.dismissSpinner();
+          if(result["member_details"] != null) {
+            this.firstName = result["member_details"].name;
+            this.birthday = result["member_details"].date_of_birth;
+            this.personTitle = result["member_details"].title;
+          }
+      		this.email = this.tempEmail;
+          this.password = this.tempPassword;
+          this.updateTickIconAfterSendRequest();
   		});
   }
 
-  goToTabsPage() {
-  	this.navCtrl.setRoot(TabsPage);
+  updateUserDetailAndPushToTabsPage() {
+    this.createSpinnerThenSpin();
+    this.httpProvider.updateUserDetail(this.token, this.email, this.password, this.personTitle, this.birthday, this.firstName).subscribe(
+        result => {
+          this.dismissSpinner();
+          if(result["member_details"] != null) {
+              this.navCtrl.setRoot(TabsPage);
+          }
+      });
   }
 
   @ViewChild('datePicker') datePicker;
@@ -73,7 +112,7 @@ export class MyDetailPage {
   dateChanged(date) {
   		const { day, month, year } = date;
   		//this.selected.year(year.value).month(month.text).date(day.value);
-  		this.birthday  =   date.day + '/' + date.month + '/' +  date.year;
+  		this.birthday  =   date.year + '-' + date.month + '-' +  date.day;
   }
 
   showHidePass() {
@@ -83,6 +122,27 @@ export class MyDetailPage {
   	} else {
   		this.type = "password";
   	}
+  }
+
+  updateTickIconAfterSendRequest() {
+    if(this.firstName != '') {
+          this.tickImageForFirstName = "assets/img/tick.svg";
+    } else {
+          this.tickImageForFirstName = "";
+    }
+
+    if(this.email != '') {
+      this.tickImageForEmail = "assets/img/tick.svg";
+    } else {
+      this.tickImageForEmail = "";
+    }
+
+    if(this.personTitle != '') {
+      this.tickImageForTitle = "assets/img/tick.svg";
+    } else {
+      this.tickImageForTitle = "";
+    }
+
   }
 
   updateTickIcon(field) {

@@ -19,6 +19,37 @@
 <ion-content text-center class ="gradientColorTopToBottom">
     <ion-list>
     <img class="displayed"  height="250 px" src="{{selectedItem.imageUrlKey}}">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px; left: -10px">
+    <div>
+    <ion-buttons left>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/MEETINGS.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    <ion-col col-8 style = "height: 100%; align-items: center; display: flex; margin-left: -15px">
+    <div style = "display: flex;">
+    <font style="font-size: 5.4vw" class="boldFont">LIST OF PARTICIPANTS</font>
+    </div>
+    </ion-col>
+    <ion-col col-2 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;" (click)="goToListOfParticipants($event, selectedItem)">
+     <img src="assets/img/arrows-24px-glyph-1_minimal-right.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    <br>
   	<p> {{myDate}} </p>
     <div class = "row" padding>
     <button ion-button class = "col col-50 buttonFourCorners boldFont transparentBackground" outline (click)="saveToDashboard($event, selectedItem, 'PARTICIPATING', eventDate.getDate(), eventMonth, index)">

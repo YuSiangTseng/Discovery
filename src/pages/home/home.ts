@@ -37,9 +37,9 @@ export class HomePage {
 
   constructor(public navCtrl: NavController, private httpProvider: HttpProvider, public loadingCtrl: LoadingController, public platform: Platform, private googleMaps: GoogleMaps, private shareService: ShareService, private storage: Storage, private app: App, private keyboard: Keyboard, private localNotification: localNotification, private badge: Badge) {
     		
-    cordova.plugins.notification.local.registerPermission(function (granted) {
-      this.storage.set('switchForNotification', granted);
-    }.bind(this));
+    // cordova.plugins.notification.local.registerPermission(function (granted) {
+    //   this.storage.set('switchForNotification', granted);
+    // }.bind(this));
 
     this.loading = this.loadingCtrl.create({
       content: `

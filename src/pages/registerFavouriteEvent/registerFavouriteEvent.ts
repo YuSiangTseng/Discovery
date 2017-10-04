@@ -77,6 +77,8 @@ export class registerFavouriteEventPage {
   }
 
   addOrDeleteFavourite(id, event) {
+
+  	console.log("test test");
   	var image = document.getElementById(id);
   	var eventName = document.getElementById("eventName" + id);
   	var thumbnail = document.getElementById("thumbnail" + id);
@@ -85,15 +87,13 @@ export class registerFavouriteEventPage {
 
     if(clicked) { 
       image.setAttribute('src', 'assets/img/deleteForFavouriteEvents.svg');
-      eventIcon.setAttribute('src', 'assets/img/' + event + "-TRANSPARENT.svg" );
-      eventIcon.classList.add('gradientColorForImageTopToBottom');
+      eventIcon.setAttribute('src', 'assets/img/' + event + "-TRANSPARENT.svg");
       eventName.style.color = "#FFFFFF";
       thumbnail.classList.remove('gradientColor');
       thumbnail.classList.add('whiteBackground');
     } else {
       image.setAttribute('src', 'assets/img/addForFavouriteEvents.svg');
       eventIcon.setAttribute('src', 'assets/img/' + event + ".svg" );
-      eventIcon.classList.remove('gradientColorForImageTopToBottom');
       eventName.style.color = "#24DE8A";
       thumbnail.classList.remove('whiteBackground');
       thumbnail.classList.add('gradientColor');

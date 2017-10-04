@@ -79,6 +79,8 @@ export class MyFavouriteEventPage {
   }
 
   addOrDeleteFavourite(id, event) {
+
+  	console.log("test test");
   	var image = document.getElementById(id);
   	var eventName = document.getElementById("eventName" + id);
   	var thumbnail = document.getElementById("thumbnail" + id);

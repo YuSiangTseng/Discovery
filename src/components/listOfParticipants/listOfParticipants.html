@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+    <div class = "gradientColorForText boldFont">
+    PARTICIPANTS
+    </div>
+    </ion-title>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
+     <img src="assets/img/userAvatarHome.svg">
+    </button>
+      <!-- <button (click)="goToMyAccountPage()">
+      <ion-icon name = ""></ion-icon>
+      </button> -->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center class ="gradientColorTopToBottom">
+    <ion-list>
+    <img class="displayed"  height="250 px" src="{{selectedItem.imageUrlKey}}">
+    <br>
+  	<p> {{myDate}} </p>
+    <div class = "row" padding>
+    <button ion-button class = "col col-50 buttonFourCorners boldFont transparentBackground" outline (click)="saveToDashboard($event, selectedItem, 'PARTICIPATING', eventDate.getDate(), eventMonth, index)">
+    <div style="float: left; color: #FFEA2C">
+      I'm going
+    </div>
+    <div style="float: right">
+    <img src="assets/img/circle-add-detailPage.svg" style="margin-left: 3px">
+    </div>
+    </button>
+    <button ion-button class = "col col-50 buttonFourCorners boldFont transparentBackground" outline (click)="saveToDashboard($event, selectedItem, 'FOLLOWING', eventDate.getDate(), eventMonth, index)">
+    <div style="float: left; color: #FFEA2C" >
+      Follow this
+    </div>
+    <div style="float: right">
+    <img src="assets/img/starDetailPage.svg" style="margin-left: 3px">
+    </div>
+    </button>
+    </div>
+
+    </ion-list>
+</ion-content>
+
+
+
+
+

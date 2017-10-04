@@ -5,12 +5,12 @@
       MY ACCOUNT
     </div>
     </ion-title>
-    <ion-buttons right>
+    <!-- <ion-buttons right>
     <button ion-button small icon-right text-center (click)="goToTabsPage()">
     Submit
     <ion-icon name="icon-codepen"></ion-icon>
     </button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
@@ -84,7 +84,7 @@
     <ion-col col-8>
       <ion-item class="bg-style noBorder" style = "background: url(assets/img/arrowDown.svg) no-repeat left;">
         <ion-select  class = "inputTextColor" interface = "popover" [(ngModel)]="personTitle" (ionChange)="updateTickIcon('title')">
-            <ion-option class = "inputTextColor" value="Mr">MR.</ion-option>
+            <ion-option class = "inputTextColor" value="Mr.">Mr.</ion-option>
             <ion-option class = "inputTextColor" value="Miss">Miss</ion-option>
         </ion-select>
       </ion-item>
@@ -145,7 +145,7 @@
     <ion-row class = "ion-row">
     <ion-col col-8>
       <ion-item class="bg-style noBorder">
-        <ion-input class = "inputTextColor" type={{type}} placeholder="Password" name="password" id="password" (keypress)="dismissKeyBoard($event)"></ion-input>
+        <ion-input class = "inputTextColor" type={{type}} placeholder="Password" name="password" id="password" [(ngModel)]="password" (keypress)="dismissKeyBoard($event)"></ion-input>
       </ion-item>
     </ion-col>
     <ion-col col-4 text-center style="align-self: center;">
@@ -153,10 +153,14 @@
     </ion-col>
     </ion-row>
     </ion-item>
-    <!-- <div class = "row" padding>
-   <button ion-button class = "col col-50" color="dark" outline style = "width: 100%; height: 100%">FINISH LATER</button>
-   <button ion-button class = "col col-50" color="dark" outline  (click) = "goToMyWorkPlacePage()">NEXT STEP</button>
-    </div> -->
+
+    <ion-item class = "bg-style noBorder" style = "padding-left: 0px">
+        <button ion-button color="light" class = "col buttonFourCorners gradientColor noBorder boldFont" style = "height: 14vw" (click)='updateUserDetailAndPushToTabsPage()' outline>UPDATE</button>
+    </ion-item>
+    
     </ion-item>
   </ion-list>
 </ion-content>
+<!-- <ion-footer class = "foo" no-padding text-center>
+  <button ion-button color="light" class = "col buttonFourCorners gradientColor noBorder boldFont" style = "height: 100%" (click)='updateUserDetailAndPushToTabsPage()' outline>UPDATE</button>
+</ion-footer> -->
