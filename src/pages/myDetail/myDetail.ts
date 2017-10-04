@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform, AlertController } from 'ionic-angular';
+import { NavController, Platform, AlertController, App } from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { Utils } from '../../providers/utils/utils';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
+import { LoginPage } from '../login/login';
 import { Keychain } from '@ionic-native/keychain';
 import CryptoJS from 'crypto-js';
 import { DateFormatPipe } from 'angular2-moment';
@@ -42,7 +43,7 @@ export class MyDetailPage {
   // private date: any = moment().toISOString();
 
   private imageSrc = "assets/img/userAvatar.svg";
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private platform: Platform, public utils: Utils, private httpProvider: HttpProvider, private storage: Storage, private keychain: Keychain, public fb: Facebook, private keyboard: Keyboard) {
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private app: App, private platform: Platform, public utils: Utils, private httpProvider: HttpProvider, private storage: Storage, private keychain: Keychain, public fb: Facebook, private keyboard: Keyboard) {
        storage.get('email').then((val) => {
           var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
           var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -73,7 +74,39 @@ export class MyDetailPage {
     this.utils.dismissSpinner();
   }
 
-
+  errorMessageHandling(error, errorFromWhichFunction) {
+    this.dismissSpinner();
+    if(error["statusText"] == "Unauthorized") {
+        var alert = this.alertCtrl.create({
+            title: 'Invalid Session',
+            subTitle: 'please login again',
+            buttons: [{
+            text: 'OK',
+            handler: () => {
+              this.storage.set('login', false);
+              this.app.getRootNavs()[0].setRoot(LoginPage);
+            }
+          }]
+        });
+        alert.present();
+    } else if(error["name"] == "TimeoutError") {
+        var alert = this.alertCtrl.create({
+            title: 'Internet Problem',
+            buttons: [{
+            text: 'Retry',
+            handler: () => {
+              if(errorFromWhichFunction == "getUserDetail") {
+                this.getUserDetail(this.token, this.tempEmail, this.tempPassword);
+              } else if(errorFromWhichFunction == "updateUserDetail") {
+                this.updateUserDetailAndPushToTabsPage();
+              }
+              
+            }
+          }]
+        });
+        alert.present();
+    }
+  }
 
   getUserDetail(token, email, password) {
     this.createSpinnerThenSpin();
@@ -89,17 +122,7 @@ export class MyDetailPage {
           this.password = this.tempPassword;
           this.updateTickIconAfterSendRequest();
   		}, err => {
-          this.dismissSpinner();
-          var alert = this.alertCtrl.create({
-              title: 'Internet Problem',
-              buttons: [{
-              text: 'Retry',
-              handler: () => {
-                this.getUserDetail(this.token, this.tempEmail, this.tempPassword);
-              }
-            }]
-          });
-          alert.present();
+          this.errorMessageHandling(err, "getUserDetail");
       });
   }
 
@@ -122,17 +145,7 @@ export class MyDetailPage {
             alert.present();
           }
       }, err => {
-        this.dismissSpinner();
-        var alert = this.alertCtrl.create({
-            title: 'Internet Problem',
-            buttons: [{
-            text: 'Retry',
-            handler: () => {
-              this.updateUserDetailAndPushToTabsPage();
-            }
-          }]
-        });
-        alert.present();
+        this.errorMessageHandling(err, "updateUserDetail");
       });
   }
 
