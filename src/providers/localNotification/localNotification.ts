@@ -30,7 +30,7 @@ export class localNotification {
                       title: "Event Reminder",
                       badge : i + 1,
                       text: this.upcomingEvents[i].labelKey,
-                      at: new Date(new Date().getTime() + 3600 * numberOfDaysForNotification * i) // firstAt and at properties must be an IETF-compliant RFC 2822 timestamp // this also could be minutes i.e. 25 (int)
+                      at: new Date(new Date().getTime() + 3600 * numberOfDaysForNotification * (i + 1)) // firstAt and at properties must be an IETF-compliant RFC 2822 timestamp // this also could be minutes i.e. 25 (int)
                       
                   });
                 }

@@ -1,4 +1,4 @@
-import { LoadingController } from 'ionic-angular';
+import { LoadingController, AlertController } from 'ionic-angular';
 import { Injectable } from '@angular/core';
 import { Keyboard } from '@ionic-native/keyboard';
 
@@ -7,7 +7,7 @@ export class Utils {
 
   loadingSpinner: any;
 
-  constructor(public loadingCtrl: LoadingController, private keyboard: Keyboard) {
+  constructor(public loadingCtrl: LoadingController, private keyboard: Keyboard, private alertCtrl: AlertController) {
   }
 
   createSpinnerThenSpin() {
@@ -24,6 +24,18 @@ export class Utils {
     }
   }
 
+  gerneralErrorHandle() {
+    let alert = this.alertCtrl.create({
+      title: 'Opps there are some Problems',
+      subTitle: 'Please try again later',
+      buttons: ['OK']
+    });
+
+    alert.present();
+
+  }
+
+  
   getMonth(date) {
     switch(date.getMonth()) {
       case 0:

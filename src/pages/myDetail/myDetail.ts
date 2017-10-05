@@ -89,7 +89,7 @@ export class MyDetailPage {
           }]
         });
         alert.present();
-    } else if(error["name"] == "TimeoutError") {
+    } else {
         var alert = this.alertCtrl.create({
             title: 'Internet Problem',
             buttons: [{

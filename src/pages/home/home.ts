@@ -38,19 +38,18 @@ export class HomePage {
   constructor(public navCtrl: NavController, private httpProvider: HttpProvider, public utils: Utils, public platform: Platform, private googleMaps: GoogleMaps, private shareService: ShareService, private storage: Storage, private app: App, private keyboard: Keyboard, private localNotification: localNotification, private badge: Badge) {
     		
     
-    // //temporary register location notification (need to move to somewhere else if it's necessary) 
-    if (this.platform.is('cordova')) {
-      cordova.plugins.notification.local.registerPermission(function (granted) {
-        this.storage.set('switchForNotification', granted);
-      }.bind(this));
-    }
-    
+      platform.ready().then(() => {
+          this.platform.resume.subscribe(() => {
+          console.log('[INFO] App resumed');
+          this.badge.clear();
+      });
+      //get data from the server, display the events users are interested in or display all events if users didnt select any favourite events
+      this.getdata();
 
-    //get data from the server, display the events users are interested in or display all events if users didnt select any favourite events
-    this.getdata();
+      //temporary event month, the date needs to be retrieved from the server
+      this.eventMonth = this.utils.getMonth(new Date());
+    });
 
-    //temporary event month, the date needs to be retrieved from the server
-    this.eventMonth = this.utils.getMonth(new Date());
 
     
   }
@@ -82,7 +81,7 @@ export class HomePage {
       //temp localNotificationTesting
       this.localNotification.upcomingEvents = this.eventItems;
       //this.localNotification.sendLocalNotification();
-      }, err =>{
+      }, err => {
         this.utils.dismissSpinner();
       }
     );
@@ -180,7 +179,6 @@ export class HomePage {
   Logout() {
       this.storage.set('login', false);
       this.app.getRootNavs()[0].setRoot(LoginPage);
-
   }
 
   goToMyAccountPage() {

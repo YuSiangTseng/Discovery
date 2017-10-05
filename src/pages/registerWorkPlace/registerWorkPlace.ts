@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, Platform } from 'ionic-angular';
+import { NavController, Platform, AlertController} from 'ionic-angular';
 import { HttpProvider } from '../../providers/http/http';
 import { Storage } from '@ionic/storage';
 import { TabsPage } from '../tabs/tabs';
@@ -40,7 +40,7 @@ export class registerWorkPlacePage {
   private selected: any = moment();
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/star.png";
-  constructor(public navCtrl: NavController, private platform: Platform, private utils: Utils,private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard, private shareService: ShareService) {
+  constructor(public navCtrl: NavController, private platform: Platform, private utils: Utils, private alertCtrl: AlertController, private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard, private shareService: ShareService) {
   	  // storage.get('token').then((val) => {
   	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
     	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -102,12 +102,6 @@ export class registerWorkPlacePage {
   	} 
   }
 
-  dismissKeyBoard(event) {
-  	if(event.keyCode == 13) {
-  		this.keyboard.close();
-  	}
-  }
-
   goToRegisterFavouriteEvents() {
     this.shareService.userJobTitle = this.userJobTitle;
     this.shareService.userKeyStage = this.userKeyStage;
@@ -120,9 +114,43 @@ export class registerWorkPlacePage {
     "userBirthday" : this.shareService.userBirthday, "userEmail" : this.shareService.userEmail, "userPassword" : this.shareService.userPassword, 
     "userJobTitle" : this.shareService.userJobTitle, "userKeyStage" : this.shareService.userKeyStage, "userSchoolName" : this.shareService.userSchoolName,
     "userPostcode" : this.shareService.userPostcode, "userCountry" : this.shareService.userCountry, "userTown" : this.shareService.userTown});
-
-    this.shareService.registerDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword);
-    this.navCtrl.push(registerFavouriteEventPage);
+    
+    this.utils.createSpinnerThenSpin();
+    this.httpProvider.registerDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword).subscribe(
+        registerResult => {
+          //register returns a token but will never be used, if register successfully, use the account to login afterwards
+          this.utils.dismissSpinner();
+          if(registerResult["token"] != null) {
+            this.shareService.loginDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword).subscribe(
+              loginResult => {
+                if(loginResult["token"] != null) {
+                  this.storage.set('login', true);
+                  var encryptedToken = CryptoJS.AES.encrypt(loginResult["token"], "My Secret Token").toString();
+                  this.storage.set('token', encryptedToken);
+                  var alert = this.alertCtrl.create({
+                    title: 'Register Successfully',
+                    subTitle: 'Please continue to choose your favourite events',
+                    buttons: [{
+                    text: 'Continue',
+                    handler: () => {
+                      this.navCtrl.push(registerFavouriteEventPage);
+                    }}]
+                  });
+                  alert.present();
+                } else {
+                  this.utils.gerneralErrorHandle();
+                }
+              }, err => {
+                this.utils.gerneralErrorHandle();
+              });
+          } else {
+            this.utils.gerneralErrorHandle();
+          }
+      }, err => {
+        this.utils.dismissSpinner();
+        this.utils.gerneralErrorHandle();
+      }); 
+    
 
   }
 

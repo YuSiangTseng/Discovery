@@ -21,21 +21,23 @@ export class HttpProvider {
     return this.http.get('https://api.edamam.com/search?q=smoothies&app_id=c1f22483&app_key=945f948f7024a5bc7f1b053cbd21e477&from=0&to=10').map(res => res.json());
   }
 
-  // getJsonDataYes(email, password){
-
-  // 	let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   let body = new FormData();
-  //   body.append('email', email);
-  //   body.append('password', password);
-  // 	return this.http.post('https://yeswestock.com/JSON/user/auth/login', body, null).timeout(4000).map(res => res.json());
-  // }
-
   loginDiscoveryAccount(email, password) {
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let body = new FormData();
     body.append('email', email);
     body.append('password', password);
     return this.http.post('http://35.177.35.62/api/login', body, null).timeout(4000).map(res => res.json());
+
+    // return this.http.post('http://35.177.35.62/api/login', body, null).timeout(4000).map(response => {
+    //     let token = response.json() && response.json().token;
+    //     if (token) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }, err => {
+    //     return false;
+    //   })
   }
 
   registerDiscoveryAccount(email, password) {
@@ -44,19 +46,17 @@ export class HttpProvider {
     body.append('email', email);
     body.append('password', password);
     return this.http.post('http://35.177.35.62/api/createMember', body, null).timeout(4000).map(res => res.json());
+    // return this.http.post('http://35.177.35.62/api/createMember', body, null).timeout(4000).map(response => {
+    //     let token = response.json() && response.json().token;
+    //     if (token) {
+    //       return true;
+    //     } else {
+    //       return false;
+    //     }
+    //   }, err => {
+    //     return false;
+    //   })
   }
-
-  // registerYes(email, password, userName, firstName, lastName){
-
-  // 	let headers = new Headers({ 'Content-Type': 'application/json' });
-  //   let body = new FormData();
-  //   body.append('email', email);
-  //   body.append('password', password);
-  //   body.append('username', userName);
-  //   body.append('firstname', firstName);
-  //   body.append('lastname', lastName);
-  // 	return this.http.post('https://yeswestock.com/JSON/user/register', body, null).timeout(4000).map(res => res.json());
-  // }
 
   getUserDetail(token, email, password) {
   	let headers = new Headers({ 'Content-Type': 'application/json', 'token' : token });

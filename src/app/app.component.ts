@@ -23,6 +23,11 @@ export class MyApp {
       //statusBar.styleDefault();
       statusBar.backgroundColorByHexString('#ffffff');
       splashScreen.hide();
+
+      // this.platform.pause.subscribe(() => {
+      //     console.log('[INFO] App paused');
+      // });
+  
     
       storage.get('login').then((val) => {
       if(val == true) {
