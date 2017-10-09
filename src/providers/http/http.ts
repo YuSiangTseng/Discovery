@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http, Headers, RequestOptions } from '@angular/http';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/timeout';
+import { Storage } from '@ionic/storage';
+import CryptoJS from 'crypto-js';
 
 /*
   Generated class for the HttpProvider provider.
@@ -13,8 +15,7 @@ import 'rxjs/add/operator/timeout';
 @Injectable()
 export class HttpProvider {
 
-  constructor(public http: Http) {
-    console.log('Hello HttpProvider Provider');
+  constructor(public http: Http, private storage: Storage) {
   }
 
   getJsonData(){
@@ -22,22 +23,18 @@ export class HttpProvider {
   }
 
   loginDiscoveryAccount(email, password) {
+    var encryptedEmail = CryptoJS.AES.encrypt(email, "My Secret Email").toString();
+    var encryptedPassword = CryptoJS.AES.encrypt(password, "My Secret Password").toString();
+    this.storage.set('email', encryptedEmail);
+    this.storage.set('password', encryptedPassword);
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let body = new FormData();
     body.append('email', email);
     body.append('password', password);
+
+    
     return this.http.post('http://35.177.35.62/api/login', body, null).timeout(4000).map(res => res.json());
 
-    // return this.http.post('http://35.177.35.62/api/login', body, null).timeout(4000).map(response => {
-    //     let token = response.json() && response.json().token;
-    //     if (token) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }, err => {
-    //     return false;
-    //   })
   }
 
   registerDiscoveryAccount(email, password) {
@@ -45,17 +42,8 @@ export class HttpProvider {
     let body = new FormData();
     body.append('email', email);
     body.append('password', password);
+
     return this.http.post('http://35.177.35.62/api/createMember', body, null).timeout(4000).map(res => res.json());
-    // return this.http.post('http://35.177.35.62/api/createMember', body, null).timeout(4000).map(response => {
-    //     let token = response.json() && response.json().token;
-    //     if (token) {
-    //       return true;
-    //     } else {
-    //       return false;
-    //     }
-    //   }, err => {
-    //     return false;
-    //   })
   }
 
   getUserDetail(token, email, password) {

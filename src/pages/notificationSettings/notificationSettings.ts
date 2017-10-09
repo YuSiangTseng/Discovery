@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { Storage } from '@ionic/storage';
 import { localNotification } from '../../providers/localNotification/localNotification';
 import { LocalNotifications } from '@ionic-native/local-notifications';
@@ -18,7 +18,7 @@ export class notificationSettingsPage {
   notificationSwitch: any;
   numberOfDays: any;
   dataForCalendar: any;
-  constructor(public navCtrl: NavController, private storage: Storage, private localNotification: localNotification, private localNotificationInSettings: LocalNotifications, private calendar: Calendar, private shareService: ShareService) {
+  constructor(public navCtrl: NavController, private platform: Platform, private storage: Storage, private localNotification: localNotification, private localNotificationInSettings: LocalNotifications, private calendar: Calendar, private shareService: ShareService) {
   	this.dataForCalendar = shareService.getDashboardItemDetail();
   	this.updatePermissionFromSettings();
   	this.getStorageValue();
@@ -101,14 +101,14 @@ export class notificationSettingsPage {
   }
 
   connectToCalendar() {
-  	this.calendar.requestWritePermission();
-  	for(var i = 0; i < this.dataForCalendar.length; i++) {
-  		this.calendar.createEvent("Event " + i , "London", this.dataForCalendar[i].item.labelKey, new Date(2017, 8, this.dataForCalendar[i].date, 10), new Date(2017, 8, this.dataForCalendar[i].date, 15)).then(result => {
-    		console.log("1 create event success: ", result);
-  		}).catch(error => {
-    		console.log("1 create event error: ", error)
-  		})
-  	}
+      this.calendar.requestWritePermission();
+      for(var i = 0; i < this.dataForCalendar.length; i++) {
+       this.calendar.createEvent("Event " + i , "London", this.dataForCalendar[i].item.labelKey, new Date(2017, 9, this.dataForCalendar[i].date, 10), new Date(2017, 9, this.dataForCalendar[i].date, 15)).then(result => {
+          console.log("1 create event success: ", result);
+        }).catch(error => {
+          console.log("1 create event error: ", error)
+        })
+      }
   }
 
 

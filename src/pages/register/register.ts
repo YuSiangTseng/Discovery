@@ -7,7 +7,7 @@ import { Keychain } from '@ionic-native/keychain';
 import CryptoJS from 'crypto-js';
 import { DateFormatPipe } from 'angular2-moment';
 import * as moment from 'moment';
-import { Camera } from 'ionic-native';
+import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
 import { LoginPage } from '../login/login';
@@ -39,7 +39,7 @@ export class registerPage {
   private selected: any = moment();
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/userAvatar.svg";
-  constructor(public navCtrl: NavController, private utils: Utils, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService) {
+  constructor(public navCtrl: NavController, private utils: Utils, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService, private camera: Camera) {
   	  // storage.get('token').then((val) => {
   	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
     	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
@@ -115,11 +115,11 @@ export class registerPage {
 		    quality: 100,
 		    targetWidth: 1000,
 		    targetHeight: 1000,
-		    encodingType: Camera.EncodingType.JPEG,      
+		    encodingType: this.camera.EncodingType.JPEG,      
 		    correctOrientation: true
 	  	}
 
-	  Camera.getPicture(cameraOptions)
+	  this.camera.getPicture(cameraOptions)
 	    .then((file_uri) => {
       //imageData is a base64 encoded string
         this.imageSrc = file_uri

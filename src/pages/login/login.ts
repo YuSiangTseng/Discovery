@@ -34,16 +34,16 @@ export class LoginPage {
   		//this.tabsElement = document.querySelector('#tabs ion-tabs');
   		//this.tabBarElement = document.querySelector('#tabs ion-tabbar-section');
       // //temporary register location notification (need to move to somewhere else if it's necessary) 
-    if (this.platform.is('cordova')) {
-      cordova.plugins.notification.local.registerPermission(function (granted) {
-        this.storage.set('switchForNotification', granted);
-      }.bind(this));
-    }
+      if (this.platform.is('cordova')) {
+        cordova.plugins.notification.local.registerPermission(function (granted) {
+          this.storage.set('switchForNotification', granted);
+        }.bind(this));
+      }
   }
   
   login(email, password) {
     this.utils.createSpinnerThenSpin();
-  	this.shareService.loginDiscoveryAccount(email, password).subscribe(
+  	this.httpProvider.loginDiscoveryAccount(email, password).subscribe(
 	        result => {
             this.utils.dismissSpinner();
             if(result) {

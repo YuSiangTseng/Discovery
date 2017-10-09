@@ -5,6 +5,9 @@ import { Utils } from '../../providers/utils/utils';
 import { AlertController } from 'ionic-angular';
 import CryptoJS from 'crypto-js';
 
+//injectable lets this class able to be shared by different components, every component uses the same instance of this class injected, 
+//which means it will only have one instance of this class
+//in every component, there is no need to construct the object with different parameters since DI does it automatically for us.
 @Injectable()
 export class ShareService {
   public dashboardItemDetail = [];
@@ -32,38 +35,6 @@ export class ShareService {
 
   constructor(private httpProvider: HttpProvider, private storage: Storage, private utils: Utils, private alertCtrl: AlertController) {
   		
-  }
-
-  errorMessageHandling(errorFromWhichFunction) {
-    
-    var alert = this.alertCtrl.create({
-        title: 'Internet Problem',
-        buttons: [{
-        text: 'Retry',
-        handler: () => {
-          if(errorFromWhichFunction == "login") {
-            this.loginDiscoveryAccount(this.userEmail, this.userPassword);
-          } else if(errorFromWhichFunction == "register") {
-            this.registerDiscoveryAccount(this.userEmail, this.userPassword);
-          }
-          
-        }
-      }]
-    });
-    alert.present();
-    
-  }
-
-  loginDiscoveryAccount(email, password) {
-    var encryptedEmail = CryptoJS.AES.encrypt(email, "My Secret Email").toString();
-    var encryptedPassword = CryptoJS.AES.encrypt(password, "My Secret Password").toString();
-    this.storage.set('email', encryptedEmail);
-    this.storage.set('password', encryptedPassword);
-    return this.httpProvider.loginDiscoveryAccount(email, password);
-  }
-
-  registerDiscoveryAccount(email, password) {
-    return this.httpProvider.registerDiscoveryAccount(email, password);
   }
 
   setData(event, item, eventTag, eventDate, eventMonth, index) {

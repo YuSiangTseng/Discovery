@@ -6,7 +6,6 @@ import { TabsPage } from '../tabs/tabs';
 import CryptoJS from 'crypto-js';
 import { DateFormatPipe } from 'angular2-moment';
 import * as moment from 'moment';
-import { Camera } from 'ionic-native';
 import { Keyboard } from '@ionic-native/keyboard';
 import { registerFavouriteEventPage } from '../registerFavouriteEvent/registerFavouriteEvent';
 import { ShareService } from '../ShareService/ShareService';
@@ -41,13 +40,6 @@ export class registerWorkPlacePage {
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/star.png";
   constructor(public navCtrl: NavController, private platform: Platform, private utils: Utils, private alertCtrl: AlertController, private httpProvider: HttpProvider, private storage: Storage, private keyboard: Keyboard, private shareService: ShareService) {
-  	  // storage.get('token').then((val) => {
-  	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
-    	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);
-     //  	this.token = plaintext;
-     //  	this.getUserDetail(this.token);
-     //  	this.keyboard.hideKeyboardAccessoryBar(true);
-     //  });
   }
 
   goToTabsPage() {
@@ -121,7 +113,7 @@ export class registerWorkPlacePage {
           //register returns a token but will never be used, if register successfully, use the account to login afterwards
           this.utils.dismissSpinner();
           if(registerResult["token"] != null) {
-            this.shareService.loginDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword).subscribe(
+            this.httpProvider.loginDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword).subscribe(
               loginResult => {
                 if(loginResult["token"] != null) {
                   this.storage.set('login', true);
@@ -152,6 +144,6 @@ export class registerWorkPlacePage {
       }); 
     
 
-  }
+    }
 
 }

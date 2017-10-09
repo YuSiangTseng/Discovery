@@ -7,7 +7,6 @@ import { Keychain } from '@ionic-native/keychain';
 import CryptoJS from 'crypto-js';
 import { DateFormatPipe } from 'angular2-moment';
 import * as moment from 'moment';
-import { Camera } from 'ionic-native';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
 import { ShareService } from '../ShareService/ShareService';
