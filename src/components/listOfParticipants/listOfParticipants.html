@@ -16,9 +16,10 @@
     </ion-buttons>
   </ion-navbar>
 </ion-header>
-<ion-content text-center class ="gradientColorTopToBottom">
-    <ion-list>
+<ion-content text-center>
+    <ion-list style = "margin-bottom: 0px">
     <img class="displayed"  height="250 px" src="{{selectedItem.imageUrlKey}}">
+    <div class ="gradientColorTopToBottom">
     <br>
   	<p> {{myDate}} </p>
     <div class = "row" padding>
@@ -40,6 +41,24 @@
     </button>
     </div>
 
+    <div style = "font-size: 5vw; color: black; text-align: center; white-space: normal; font-weight: bold;">
+    There are currently {{participants.length}} participants
+    </div>
+
+    <ion-item no-lines text-wrap *ngFor="let participant of participants" style = "background-color: transparent; padding-left: 0px">
+    <ion-card style = "margin-bottom: 0px; text-align: center;" text-center>
+      <img class = "btn" src = {{participant.imageUrl}} (click) = "goToParticipantProfile($event, participant)">
+      <ion-card-content style = "padding-top: 0px;">
+        <ion-card-title>
+          {{participant.fullName}}
+          </ion-card-title>
+        <p>
+          {{participant.jobTitle}} At: {{participant.workPlace}}
+        </p>
+      </ion-card-content>
+    </ion-card>
+    </ion-item>
+    </div>
     </ion-list>
 </ion-content>
 

@@ -69,4 +69,34 @@ export class HttpProvider {
     return this.http.post('http://35.177.35.62/api/updateMemberDetails', body).timeout(4000).map(res => res.json());
   }
 
+  getParticipants() {
+    var dummyParticipants = [
+    {"imageUrl" : "assets/img/shepherd.jpg", "jobTitle" : "Doctor", "workPlace" : "Leyton", "fullName" : "Shepherd", "joinDate" : "20th Aug 2017", "KeyStage" : "KS1", 
+     "activityFeed" : 
+      { 
+        "followed" : [{"event" : "event1", "date" : "2017-10-01"}, {"event" : "event2", "date" : "2017-09-25"}], 
+        "going" : [{"event" : "event3", "date" : "2017-10-06"}, {"event" : "event4", "date" : "2017-10-09"}],
+        "commented" : [{"event" : "event5", "date" : "2017-10-10"}, {"event" : "event6", "date" : "2017-09-30"}] 
+      },
+     "showMyDetail" : true
+    },
+    
+
+    {"imageUrl" : "assets/img/husky.jpg", "jobTitle" : "Teacher", "workPlace" : "Old Street", "fullName" : "Husky", "joinDate" :  "20th Aug 2017", "KeyStage" : "KS2",
+     "activityFeed" : 
+      { 
+        "followed" : [{"event" : "event2", "date" : "2017-09-30"}], 
+        "going" : [{"event" : "event3", "date" : "2017-08-20"}, {"event" : "event4", "date" : "2017-10-09"}]
+      },
+     "showMyDetail" : true
+    },
+    {"imageUrl" : "assets/img/yorkshire.jpg", "jobTitle" : "Professor", "workPlace" : "Kensington", "fullName" : "Yorkshire", "joinDate" :  "20th Aug 2017", "KeyStage" : "KS3", "showMyDetail" : false}, 
+    {"imageUrl" : "assets/img/pomeranian.jpg", "jobTitle" : "Musician",  "workPlace" : "Holborn", "fullName" : "Pomeranian", "joinDate" :  "20th Aug 2017", "KeyStage" : "KS4", "showMyDetail" : true},
+    {"imageUrl" : "assets/img/maltese.jpg", "jobTitle" : "Programmer", "workPlace" : "KingX", "fullName" : "Maltese", "joinDate" :  "20th Aug 2017", "KeyStage" : "KS5", "showMyDetail" : true}
+    ];
+
+    return dummyParticipants;
+
+  }
+
 }

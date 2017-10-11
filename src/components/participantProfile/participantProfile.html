@@ -1,0 +1,80 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title class = "selectBackgroundColor">
+    <div class = "gradientColorForText boldFont">
+    PARTICIPANT PROFILE
+    </div>
+    </ion-title>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button  (click)="goToMyAccountPage()" style="background-color: transparent;">
+     <img src="assets/img/userAvatarHome.svg">
+    </button>
+      <!-- <button (click)="goToMyAccountPage()">
+      <ion-icon name = ""></ion-icon>
+      </button> -->
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+<ion-content text-center style = "background-color: #16ACE3">
+    <ion-list class = "removeBottomSpace" text-center>
+    <img class="displayed"  height="250 px" src="{{participantDetail.imageUrl}}">
+
+    <div style = "background-color: #16ACE3">
+    <br>
+  	<p> JOINED ON: {{participantDetail.joinDate}} </p>
+    <p style = "font-weight: bold; color: #FFEA2C; font-size: 8vw"> {{participantDetail.fullName}} </p>
+    <p style = "color: white; font-size: 5vw"> School: <span style = "font-weight: bold"> {{participantDetail.workPlace}} </span> </p>
+    <p style = "color: white; font-size: 5vw"> Job Title: <span style = "font-weight: bold"> {{participantDetail.jobTitle}} </span> </p>
+    <p style = "color: white; font-size: 5vw; font-weight: bold"> {{participantDetail.KeyStage}} </p>
+
+    <ion-item  class = "transparentBackground noBorder" style = "padding-left: 8px; padding-right: 8px; padding-top: 8px;">
+    <div style = "height: 55px; width: 100%" class = "gradientColorForSettingText">
+    <ion-row style =  "margin-left: 5px; margin-right: 5px; height: 100%;">
+    <ion-col col-6 style = "height: 100%; align-items: center; display: flex;">
+    <div style = "display: flex;">
+    <h2 class="boldFont">ACTIVITY FEED</h2>
+    </div>
+    </ion-col>
+    <ion-col col-6 style = "height: 100%; align-items: center; display: grid; padding-right: 0px">
+    <div>
+    <ion-buttons right>
+    <!-- <img src="assets/img/userAvatarHome.svg" style = "width : 100%; height : 100%;" ng-click = "goToMyAccountPage()"> -->
+    <button style="background-color: transparent;">
+     <img src="assets/img/calendarDashBoard.svg">
+    </button>
+    </ion-buttons>
+    </div>
+    </ion-col>
+    </ion-row>
+    </div>
+    </ion-item>
+
+    <ion-item class="transparentBackground noBorder" style = "padding-left: 8px; padding-right: 8px; margin-bottom: 3px" *ngFor="let activityFeedItem of activityFeed; let i = index">
+    <ion-row>
+    <ion-col col-2>
+    <ion-thumbnail item-start id = "thumbnail{{i}}" class = "gradientColorForSettingText styleForThumbnail" style = "margin-left: 2px">
+      <img *ngIf = "activityFeedItem.type == 'followed'" src = "assets/img/starMyAccount.svg" style="width:100%; height: 100%">
+      <img *ngIf = "activityFeedItem.type == 'going'" src = "assets/img/users-32px-glyph-2_a-add.svg" style="width:100%; height: 100%">
+      <img *ngIf = "activityFeedItem.type == 'commented'" src = "assets/img/shopping-32px-glyph-2_customer-support.svg" style="width:100%; height: 100%">
+    </ion-thumbnail>
+    </ion-col>
+    <ion-col col-8 style = "margin-top: 7px">
+    <div class="textPosition">
+    <div *ngIf = "activityFeedItem.type == 'followed'" class = "styleForActivityFeed">Started Followed <span style = "color: #FFEA2C">{{activityFeedItem.event}}</span></div>
+    <div *ngIf = "activityFeedItem.type == 'going'" class = "styleForActivityFeed">Going to <span style = "color: #FFEA2C">{{activityFeedItem.event}}</span></div>
+    <div *ngIf = "activityFeedItem.type == 'commented'" class = "styleForActivityFeed">Commendted on <span style = "color: #FFEA2C">{{activityFeedItem.event}}</span></div>
+    <p style = "padding-left: 10px;" id = "timeDescription{{i}}"></p>
+    </div>
+    </ion-col>
+    </ion-row>
+    <div class = "shadow"></div>
+    </ion-item>
+    </div>
+    </ion-list>
+</ion-content>
+
+
+
+
+

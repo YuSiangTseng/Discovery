@@ -1,27 +1,15 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player'
-import { SafeResourceUrl, DomSanitizer } from '@angular/platform-browser';
 import { HttpProvider } from '../../providers/http/http';
-import { SocialSharing } from '@ionic-native/social-sharing';
-import { Platform } from 'ionic-angular';
-import { GoogleMaps, GoogleMap, GoogleMapsEvent, LatLng, Marker, MarkerOptions, CameraPosition } from '@ionic-native/google-maps';
-import { InAppBrowser } from '@ionic-native/in-app-browser'
 import { ShareService } from '../../pages/ShareService/ShareService';
 import { MyAccountPage } from '../../pages/myAccount/myAccount';
-/**
- * Generated class for the ItemDetailPageComponent component.
- *
- * See https://angular.io/docs/ts/latest/api/core/index/ComponentMetadata-class.html
- * for more info on Angular Components.
- */
+import { participantProfilePage } from '../participantProfile/participantProfile';
 
-declare var google;
 
 @Component({
   selector: 'listOfParticipants',
   templateUrl: 'listOfParticipants.html',
-  providers:[HttpProvider]
+  providers:[ HttpProvider ]
 })
 export class listOfParticipantsPage {
 
@@ -32,17 +20,19 @@ export class listOfParticipantsPage {
   allLinks = '';
   eventMonth: String;
   eventDate: Date = new Date();
+  participants = [];
 
-
-  constructor(public navCtrl: NavController, public navParams: NavParams, private youtube: YoutubeVideoPlayer, private domSanitizer: DomSanitizer, public socialSharing:SocialSharing, public platform: Platform, private googleMaps: GoogleMaps, private iab: InAppBrowser, private shareService: ShareService) {
-  platform.ready().then(() => {
-        console.log('map');
-            //this.loadMap();
-    });
+  constructor(public navCtrl: NavController, public navParams: NavParams, private shareService: ShareService, private http: HttpProvider) {
+ 
     this.selectedItem = navParams.get('item');
-    //this.index = navParams.get('index');
+    this.index = navParams.get('index');
     this.eventMonth = this.getMonth(new Date());
-    //this.allItems = navParams.get('allItems');
+
+    for(var index in http.getParticipants()) {
+      if(http.getParticipants()[index].showMyDetail == true) {
+        this.participants.push(http.getParticipants()[index]);
+      }
+    }
 
   }
 
@@ -84,6 +74,10 @@ export class listOfParticipantsPage {
 
   goToMyAccountPage() {
       this.navCtrl.push(MyAccountPage);
+  }
+
+  goToParticipantProfile(event, participantDetail) {
+      this.navCtrl.push(participantProfilePage, {participantDetail: participantDetail});
   }
 
 

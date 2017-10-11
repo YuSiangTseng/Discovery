@@ -110,8 +110,8 @@ export class ItemDetailPageComponent {
       this.navCtrl.push(MyAccountPage);
   }
 
-  goToListOfParticipants(event, selectedItem) {
-      this.navCtrl.push(listOfParticipantsPage, {item: selectedItem});
+  goToListOfParticipants(event, selectedItem, index) {
+      this.navCtrl.push(listOfParticipantsPage, {item: selectedItem, index: index});
   }
 
 }
