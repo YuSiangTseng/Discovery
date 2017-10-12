@@ -1,0 +1,111 @@
+ParticipantProfile {
+	
+
+  .boldFont {
+    font-weight: bold;
+    color: #FFFFFF !important;
+  }
+
+  .displayed {
+    width:100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .noBorder {
+    border-right: 0px clear transparent;
+    border-left: 0px clear transparent; 
+    border-top: 0px clear transparent;
+    border-bottom: 0px clear transparent; 
+    border-color: transparent;
+  }
+
+  .attendButtonsStyle {
+    color: yellow;
+    border-color: yellow;
+    border-style: solid;
+    border-right: 1px solid yellow;
+    border-left: 1px solid yellow; 
+    border-top: 1px solid yellow;
+    border-bottom: 1px solid yellow; 
+    background-color: #87CEEB;
+    text-align: center;
+    align-items: center;
+    line-height: 50%;
+    position: relative;
+    display: inline-block;
+    
+    padding-right: 0px;
+  }
+
+  .transparentBackground {
+    background-color: transparent;
+  }
+
+  .row {
+    margin-right: 0px;
+    margin-left: 0px;
+  }
+
+  .list-ios .item-block .item-inner {
+    border-bottom: none;
+    padding-right: 0px;
+  }
+  
+  .label-ios {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    height: 100%;
+    margin-right: 0px;
+  }
+
+ 
+  .back-button {
+      color: #00BEDC !important; 
+  }
+
+  .removeBottomSpace{
+      margin-bottom: 0px;
+  }
+
+  .textPosition {
+      text-align: left;
+  }
+
+  .shadow {
+    border-radius: 50%;
+    width: 90%;
+    height: 1px;
+    position: absolute;
+    left: 16px;
+    right: 16px;
+    bottom: -6px;
+    background: #2E3D3D;
+    border: 4.5px solid #9a9c9c;
+    margin: -5px auto 0;
+    z-index: 2;
+  }
+
+  .styleForThumbnail {
+      padding-left: 2vw;
+      padding-top: 2vw;
+      padding-right: 2vw;
+      padding-bottom: 2vw;
+      margin-left: 2px;
+  }
+
+  .styleForActivityFeed {
+    color: white;
+    font-size: 5vw;
+    padding-bottom: 8px;
+    padding-top: 2px;
+    padding-left: 10px;
+  }
+
+}
+
+ion-app._gmaps_cdv_ .nav-decor{
+  		background-color: #505050 !important;
+}
+
