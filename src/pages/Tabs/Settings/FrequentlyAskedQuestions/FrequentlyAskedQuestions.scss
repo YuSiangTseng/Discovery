@@ -1,0 +1,131 @@
+FrequentlyAskedQuestions {
+  
+  .displayed {
+  	  width:88%;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+  }
+
+  .item-inner {
+  	padding-right: 0px !important;
+  }
+
+  .noBorder {
+    border-right: 0px clear transparent;
+    border-left: 0px clear transparent; 
+    border-top: 0px clear transparent;
+    border-bottom: 0px clear transparent; 
+    border-color: transparent;
+  }
+
+  .inputTextColor {
+    color: #FFEA2C;
+  }
+
+  .bg-style {
+    background-color: #202C2B;
+    width:100%;
+  }
+
+  .boldFont {
+    font-weight: bold;
+    color: #FFFFFF !important;
+  }
+
+  .boldFontWithColor {
+    font-weight: bold;
+    color: #DE577B;
+  }
+
+  .label-ios {
+    margin-right: 0px !important;
+    margin-left: 0px !important;
+    margin-top: auto;
+    margin-bottom: 0px;
+    text-align: left;
+  }
+
+  ion-select {
+    max-width: 100%;
+  }
+
+  .btn {
+      height: 15vw;
+      width: 15vw;
+      display: inline-block;
+  }
+
+  .wordWrap {
+    white-space: normal !important;
+    text-align: left !important;
+  }
+
+ #outer
+  {
+      width:100%;
+      text-align: left;
+  }
+  .inner
+  {
+      display: inline-block;
+      margin-left: 3px;
+      margin-right: 3px;
+  }
+
+  .ion-row {
+     border-bottom: 1px solid #FFEA2C;
+
+  }
+
+  .select-ios .select-icon .select-icon-inner {
+    border-top: 10px solid;
+    border-right: 10px solid transparent;
+    border-left: 10px solid transparent;
+    border-bottom: 8px solid;
+    color: transparent;
+    left: 17px;
+    margin-top: -11px;
+  }
+
+  .select-placeholder {
+    color: #FFEA2C !important;
+    font-size: 5vw;
+  }
+
+  .text-input-ios {
+    color: #FFEA2C;
+    height: 36vw;
+  }
+
+  .text-input::-moz-placeholder {
+    color: #FFEA2C;
+  }
+
+  .text-input:-ms-input-placeholder {
+    color: #FFEA2C;
+  }
+
+  .text-input::-webkit-input-placeholder {
+    text-indent: 0;
+    color: #FFEA2C;
+  }
+
+  .shadow {
+    border-radius: 50%;
+    width: 90%;
+    height: 2px;
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    bottom: -6px;
+    background: #2E3D3D;
+    border: 5px solid #2E3D3D;
+    margin: -5px auto 0;
+    z-index: 2;
+  }
+
+
+
+
+}

@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
-import { ItemDetailPageComponent } from './item-detail-page/item-detail-page';
+import { EventDetailPage } from './EventDetail/EventDetail';
 @NgModule({
-	declarations: [ItemDetailPageComponent],
+	declarations: [EventDetailPage],
 	imports: [],
-	exports: [ItemDetailPageComponent]
+	exports: [EventDetailPage]
 })
 export class ComponentsModule {}

@@ -3,10 +3,10 @@ import { NavController, NavParams } from 'ionic-angular';
 
 
 @Component({
-  selector: 'participantProfile',
-  templateUrl: 'participantProfile.html',
+  selector: 'ParticipantProfile',
+  templateUrl: 'ParticipantProfile.html',
 })
-export class participantProfilePage {
+export class ParticipantProfilePage {
 
   participantDetail: any;
   activityFeed = [];

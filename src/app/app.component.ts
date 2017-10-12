@@ -3,8 +3,8 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { Nav, Platform } from 'ionic-angular';
 
-import { TabsPage } from '../pages/tabs/tabs';
-import { LoginPage } from '../pages/login/login';
+import { TabsPage } from '../pages/Tabs/Tabs';
+import { UserLoginPage } from '../pages/UserLogin/UserLogin';
 import { Storage } from '@ionic/storage';
 import { Badge } from '@ionic-native/badge';
 
@@ -34,7 +34,7 @@ export class MyApp {
         this.rootPage = TabsPage;
         //this.nav.setRoot(TabsPage);
       } else {
-        this.rootPage = LoginPage;
+        this.rootPage = UserLoginPage;
         //this.nav.setRoot(LoginPage);
       }
       });

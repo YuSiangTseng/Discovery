@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpProvider } from '../../providers/http/http';
+import { HttpProvider } from '../../providers/HttpProvider/HttpProvider';
 import { Storage } from '@ionic/storage';
-import { Utils } from '../../providers/utils/utils';
 import { AlertController } from 'ionic-angular';
 import CryptoJS from 'crypto-js';
 
@@ -33,7 +32,7 @@ export class ShareService {
 
 
 
-  constructor(private httpProvider: HttpProvider, private storage: Storage, private utils: Utils, private alertCtrl: AlertController) {
+  constructor(private httpProvider: HttpProvider, private storage: Storage, private alertCtrl: AlertController) {
   		
   }
 

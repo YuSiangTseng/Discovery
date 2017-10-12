@@ -1,0 +1,58 @@
+UserLogin {
+	
+	.style1 {
+		font-size: 100%;
+		color: blue;
+	}
+
+  	.ion-row {
+	   border-bottom: 1px solid white;
+
+	}
+
+	.verticalElement {
+  		position: relative;
+  		top: 50%;
+  		transform: translateY(-50%);
+	}
+
+	.bottomAlign {
+		position:relative;
+		margin-top:100%;
+	}
+
+	.selectBackgroundColor {
+		background-color: #273238;
+	}
+
+	.row {
+		margin-right: 0px;
+		margin-left: 0px;
+	}
+
+	.noBorder {
+	  border-right: 0px clear transparent;
+	  border-left: 0px clear transparent; 
+	  border-top: 0px clear transparent;
+	  border-bottom: 0px clear transparent; 
+	  border-color: transparent;
+	}
+
+	.bg-style {
+	  background-color: #2E3C3C;
+	  width:100%;
+	}
+
+	.buttonFourCorners {
+	  border-radius: 0px;
+	}
+
+	.boldFont {
+	  font-weight: bold;
+	}
+
+	.inputTextColor {
+  	 	color: #FFFFFF;
+	}
+
+}

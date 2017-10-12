@@ -3,36 +3,45 @@ import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 
-import { AboutPage } from '../pages/about/about';
-import { settingsPage } from '../pages/settings/settings';
-import { notificationSettingsPage } from '../pages/notificationSettings/notificationSettings';
-import { howItWorksPage } from '../pages/howItWorks/howItWorks';
-import { getInTouchPage } from '../pages/getInTouch/getInTouch';
-import { frequentlyAskedQuestionsPage } from '../pages/frequentlyAskedQuestions/frequentlyAskedQuestions';
-import { aboutHighlightPage } from '../pages/aboutHighlight/aboutHighlight';
-import { termsAndConditionsPage } from '../pages/termsAndConditions/termsAndConditions';
-import { HomePage } from '../pages/home/home';
-import { TabsPage } from '../pages/tabs/tabs';
-import { ItemDetailPageComponent } from '../components/item-detail-page/item-detail-page';
-import { listOfParticipantsPage } from '../components/listOfParticipants/listOfParticipants';
-import { participantProfilePage } from '../components/participantProfile/participantProfile';
 
-import { LoginPage } from '../pages/login/login';
-import { MyAccountPage } from '../pages/myAccount/myAccount';
-import { MyDetailPage } from '../pages/myDetail/myDetail';
-import { registerPage } from '../pages/register/register';
-import { registerWorkPlacePage } from '../pages/registerWorkPlace/registerWorkPlace';
-import { MyFavouriteEventPage } from '../pages/myFavouriteEvent/myFavouriteEvent';
-import { registerFavouriteEventPage } from '../pages/registerFavouriteEvent/registerFavouriteEvent';
-import { myWorkPlacePage } from '../pages/myWorkPlace/myWorkPlace';
+
+import { TabsPage } from '../pages/Tabs/Tabs';
+import { DiscoverPage } from '../pages/Tabs/Discover/Discover';
+import { DashboardPage } from '../pages/Tabs/Dashboard/Dashboard';
+import { EventDetailPage } from '../components/EventDetail/EventDetail';
+import { ParticipantsPage } from '../components/Participants/Participants';
+import { ParticipantProfilePage } from '../components/ParticipantProfile/ParticipantProfile';
+import { SearchEventsMenuPage } from '../pages/Tabs/Discover/SearchEventsMenu/SearchEventsMenu';
+
+//Login and Register
+import { UserLoginPage } from '../pages/UserLogin/UserLogin';
+import { RegisterPersonalDetailPage } from '../pages/Register/RegisterPersonalDetail/RegisterPersonalDetail';
+import { RegisterWorkPlacePage } from '../pages/Register/RegisterWorkPlace/RegisterWorkPlace';
+import { RegisterFavouriteEventPage } from '../pages/Register/RegisterFavouriteEvent/RegisterFavouriteEvent';
+
+//PersonalAccount
+import { PersonalAccountPage } from '../pages/PersonalAccount/PersonalAccount';
+import { UserDetailPage } from '../pages/PersonalAccount/UserDetail/UserDetail';
+import { PersonalFavouriteEventPage } from '../pages/PersonalAccount/PersonalFavouriteEvent/PersonalFavouriteEvent';
+import { PersonalWorkPlacePage } from '../pages/PersonalAccount/PersonalWorkPlace/PersonalWorkPlace';
+
+//Settings
+import { SettingsPage } from '../pages/Tabs/Settings/Settings';
+import { NotificationSettingsPage } from '../pages/Tabs/Settings/NotificationSettings/NotificationSettings';
+import { AboutHighlightPage } from '../pages/Tabs/Settings/AboutHighlight/AboutHighlight';
+import { HowItWorksPage } from '../pages/Tabs/Settings/HowItWorks/HowItWorks';
+import { FrequentlyAskedQuestionsPage } from '../pages/Tabs/Settings/FrequentlyAskedQuestions/FrequentlyAskedQuestions';
+import { GetInTouchPage } from '../pages/Tabs/Settings/GetInTouch/GetInTouch';
+import { TermsAndConditionsPage } from '../pages/Tabs/Settings/TermsAndConditions/TermsAndConditions';
+
 
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
-import { HttpProvider } from '../providers/http/http';
-import { Utils } from '../providers/utils/utils';
-import { localNotification } from '../providers/localNotification/localNotification';
+import { HttpProvider } from '../providers/HttpProvider/HttpProvider';
+import { UtilsProvider } from '../providers/UtilsProvider/UtilsProvider';
+import { LocalNotificationProvider } from '../providers/LocalNotificationProvider/LocalNotificationProvider';
 import { HttpModule } from '@angular/http';
 import { YoutubeVideoPlayer } from '@ionic-native/youtube-video-player'
 import { SocialSharing } from '@ionic-native/social-sharing';
@@ -56,27 +65,28 @@ import { EmailComposer } from '@ionic-native/email-composer';
 @NgModule({
   declarations: [
     MyApp,
-    AboutPage,
-    settingsPage,
-    HomePage,
+    DashboardPage,
+    SettingsPage,
+    DiscoverPage,
     TabsPage,
-    ItemDetailPageComponent,
-    listOfParticipantsPage,
-    participantProfilePage,
-    LoginPage,
-    MyAccountPage,
-    MyDetailPage,
-    MyFavouriteEventPage,
-    registerPage,
-    registerWorkPlacePage,
-    registerFavouriteEventPage,
-    myWorkPlacePage,
-    notificationSettingsPage,
-    howItWorksPage,
-    getInTouchPage,
-    frequentlyAskedQuestionsPage,
-    aboutHighlightPage,
-    termsAndConditionsPage
+    EventDetailPage,
+    ParticipantsPage,
+    ParticipantProfilePage,
+    UserLoginPage,
+    PersonalAccountPage,
+    UserDetailPage,
+    PersonalFavouriteEventPage,
+    RegisterPersonalDetailPage,
+    RegisterWorkPlacePage,
+    RegisterFavouriteEventPage,
+    PersonalWorkPlacePage,
+    NotificationSettingsPage,
+    HowItWorksPage,
+    GetInTouchPage,
+    FrequentlyAskedQuestionsPage,
+    AboutHighlightPage,
+    TermsAndConditionsPage,
+    SearchEventsMenuPage
   ],
   imports: [
     BrowserModule,
@@ -89,34 +99,35 @@ import { EmailComposer } from '@ionic-native/email-composer';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    AboutPage,
-    settingsPage,
-    HomePage,
+    DashboardPage,
+    SettingsPage,
+    DiscoverPage,
     TabsPage,
-    ItemDetailPageComponent,
-    listOfParticipantsPage,
-    participantProfilePage,
-    LoginPage,
-    MyAccountPage,
-    MyDetailPage,
-    MyFavouriteEventPage,
-    registerPage,
-    registerWorkPlacePage,
-    registerFavouriteEventPage,
-    myWorkPlacePage,
-    notificationSettingsPage,
-    howItWorksPage,
-    getInTouchPage,
-    frequentlyAskedQuestionsPage,
-    aboutHighlightPage,
-    termsAndConditionsPage
+    EventDetailPage,
+    ParticipantsPage,
+    ParticipantProfilePage,
+    UserLoginPage,
+    PersonalAccountPage,
+    UserDetailPage,
+    PersonalFavouriteEventPage,
+    RegisterPersonalDetailPage,
+    RegisterWorkPlacePage,
+    RegisterFavouriteEventPage,
+    PersonalWorkPlacePage,
+    NotificationSettingsPage,
+    HowItWorksPage,
+    GetInTouchPage,
+    FrequentlyAskedQuestionsPage,
+    AboutHighlightPage,
+    TermsAndConditionsPage,
+    SearchEventsMenuPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     HttpProvider,
-    Utils,
+    UtilsProvider,
     YoutubeVideoPlayer,
     SocialSharing,
     GoogleMaps,
@@ -127,7 +138,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
     Facebook,
     Keyboard,
     LocalNotifications,
-    localNotification,
+    LocalNotificationProvider,
     Badge,
     Calendar,
     EmailComposer

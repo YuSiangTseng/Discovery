@@ -80,6 +80,13 @@ $app-direction: ltr;
   background: linear-gradient(#DA4686,#A851A6);
 }
 
+.gradientColorLeftToRightDashBoard {
+  background: -webkit-linear-gradient(left,#DA4686,#A851A6);
+  background: -o-linear-gradient(right,#DA4686,#A851A6);
+  background: -moz-linear-gradient(right,#DA4686,#A851A6);
+  background: linear-gradient(right,#DA4686,#A851A6);
+}
+
 .gradientColorForSettingText {
   background: -webkit-linear-gradient(left,#D74468,#F8CF35);
   background: -o-linear-gradient(right,#D74468,#F8CF35);
