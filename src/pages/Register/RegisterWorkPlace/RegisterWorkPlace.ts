@@ -69,22 +69,22 @@ export class RegisterWorkPlacePage {
 	  			this.tickImageForSchoolName = "";
 	  		}
 	  		break;
-	  	case "tickImageForPostcode" :
-  			if(this.tickImageForPostcode != '') {
-				this.tickImageForPostcode = "assets/img/tick.svg";
+	  	case "userPostcode" :
+  			if(this.userPostcode != '') {
+				  this.tickImageForPostcode = "assets/img/tick.svg";
   			} else {
   				this.tickImageForPostcode = "";
   			}
   			break;
-      case "tickImageForCountry" :
-        if(this.tickImageForCountry != '') {
+      case "userCountry" :
+        if(this.userCountry != '') {
         this.tickImageForCountry = "assets/img/tick.svg";
         } else {
           this.tickImageForCountry = "";
         }
         break;
-      case "tickImageForTown" :
-        if(this.tickImageForTown != '') {
+      case "userTown" :
+        if(this.userTown != '') {
         this.tickImageForTown = "assets/img/tick.svg";
         } else {
           this.tickImageForTown = "";
@@ -101,14 +101,14 @@ export class RegisterWorkPlacePage {
     this.shareService.userPostcode = this.userPostcode;
     this.shareService.userCountry = this.userCountry;
     this.shareService.userTown = this.userTown;
-    var personalDetail = [];
-    personalDetail.push({"userTitle" : this.shareService.userTitle, "userFirstName" : this.shareService.userFirstName, "userLastName" : this.shareService.userLastName,
+    //var personalDetail = [];
+    var personalDetail = {"userTitle" : this.shareService.userTitle, "userFirstName" : this.shareService.userFirstName, "userLastName" : this.shareService.userLastName,
     "userBirthday" : this.shareService.userBirthday, "userEmail" : this.shareService.userEmail, "userPassword" : this.shareService.userPassword, 
     "userJobTitle" : this.shareService.userJobTitle, "userKeyStage" : this.shareService.userKeyStage, "userSchoolName" : this.shareService.userSchoolName,
-    "userPostcode" : this.shareService.userPostcode, "userCountry" : this.shareService.userCountry, "userTown" : this.shareService.userTown});
+    "userPostcode" : this.shareService.userPostcode, "userCountry" : this.shareService.userCountry, "userTown" : this.shareService.userTown};
     
     this.utils.createSpinnerThenSpin();
-    this.httpProvider.registerDiscoveryAccount(this.shareService.userEmail, this.shareService.userPassword).subscribe(
+    this.httpProvider.registerDiscoveryAccount(personalDetail).subscribe(
         registerResult => {
           //register returns a token but will never be used, if register successfully, use the account to login afterwards
           this.utils.dismissSpinner();
@@ -136,9 +136,11 @@ export class RegisterWorkPlacePage {
                 this.utils.gerneralErrorHandle();
               });
           } else {
+            console.log("bad");
             this.utils.gerneralErrorHandle();
           }
       }, err => {
+        console.log(err);
         this.utils.dismissSpinner();
         this.utils.gerneralErrorHandle();
       }); 

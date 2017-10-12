@@ -36,6 +36,22 @@ export class ShareService {
   		
   }
 
+  getToken() {
+    this.storage.get('token').then((val) => {
+        var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
+        var token = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        return token;
+      });
+  }
+
+  getEmail() {
+    this.storage.get('email').then((val) => {
+          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
+          var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
+          return email;
+    });
+  }
+
   setData(event, item, eventTag, eventDate, eventMonth, index) {
 
   	for(var i in this.dashboardItemDetail) {

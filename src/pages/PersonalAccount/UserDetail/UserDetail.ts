@@ -61,7 +61,7 @@ export class UserDetailPage {
     	  var token = decryptedBytes.toString(CryptoJS.enc.Utf8);
       	this.token = token;
 
-      	this.getUserDetail(this.token, this.tempEmail, this.tempPassword);
+      	this.getUserDetail(this.token, this.tempEmail);
       	this.keyboard.hideKeyboardAccessoryBar(true);
       });
   }
@@ -96,7 +96,7 @@ export class UserDetailPage {
             text: 'Retry',
             handler: () => {
               if(errorFromWhichFunction == "getUserDetail") {
-                this.getUserDetail(this.token, this.tempEmail, this.tempPassword);
+                this.getUserDetail(this.token, this.tempEmail);
               } else if(errorFromWhichFunction == "updateUserDetail") {
                 this.updateUserDetailAndPushToTabsPage();
               }
@@ -108,14 +108,15 @@ export class UserDetailPage {
     }
   }
 
-  getUserDetail(token, email, password) {
+  getUserDetail(token, email) {
     this.createSpinnerThenSpin();
-  	 this.httpProvider.getUserDetail(token, email, password).subscribe(
+  	 this.httpProvider.getUserDetail(token, email).subscribe(
         result => {
           this.dismissSpinner();
           if(result["member_details"] != null) {
-            this.firstName = result["member_details"].name;
-            this.birthday = result["member_details"].date_of_birth;
+            this.firstName = result["member_details"].firstname;
+            this.lastName = result["member_details"].lastname;
+            this.birthday = result["member_details"].birthday;
             this.personTitle = result["member_details"].title;
           }
       		this.email = this.tempEmail;

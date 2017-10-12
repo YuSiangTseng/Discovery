@@ -13,6 +13,8 @@ import { Keyboard } from '@ionic-native/keyboard';
 import { UserLoginPage } from '../../UserLogin/UserLogin';
 import { RegisterWorkPlacePage } from '../../Register/RegisterWorkPlace/RegisterWorkPlace';
 import { ShareService } from '../../ShareService/ShareService';
+import { UtilsProvider } from '../../../providers/UtilsProvider/UtilsProvider';
+
 
 @Component({
   selector: 'RegisterPersonalDetail',
@@ -38,7 +40,7 @@ export class RegisterPersonalDetailPage {
   private selected: any = moment();
   private date: any = moment().toISOString();
   private imageSrc = "assets/img/userAvatar.svg";
-  constructor(public navCtrl: NavController, private platform: Platform, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService, private camera: Camera) {
+  constructor(public navCtrl: NavController, private platform: Platform, private utils: UtilsProvider, private httpProvider: HttpProvider, private storage: Storage, public fb: Facebook, private keyboard: Keyboard, private shareService: ShareService, private camera: Camera) {
   	  // storage.get('token').then((val) => {
   	  // 	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
     	//   var plaintext = decryptedBytes.toString(CryptoJS.enc.Utf8);

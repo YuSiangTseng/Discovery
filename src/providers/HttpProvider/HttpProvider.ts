@@ -51,27 +51,37 @@ export class HttpProvider {
     let body = new FormData();
     body.append('email', email);
     body.append('password', password);
-
     
     return this.http.post('http://35.177.35.62/api/login', body, null).timeout(4000).map(res => res.json());
 
   }
 
-  registerDiscoveryAccount(email, password) {
+  registerDiscoveryAccount(personalDetail) {
+
     let headers = new Headers({ 'Content-Type': 'application/json' });
     let body = new FormData();
-    body.append('email', email);
-    body.append('password', password);
+    body.append('email', personalDetail.userEmail);
+    body.append('password', personalDetail.userPassword);
+    body.append('title', personalDetail.userTitle);
+    body.append('firstname', personalDetail.userFirstName);
+    body.append('lastname', personalDetail.userLastName);
+    body.append('birthday', personalDetail.userBirthday);
+    body.append('jobtitle', personalDetail.userJobTitle);
+    body.append('keystage', personalDetail.userKeyStage);
+    body.append('schoolname', personalDetail.userSchoolName);
+    body.append('postcode', personalDetail.userPostcode);
+    body.append('country', personalDetail.userCountry);
+    body.append('town', personalDetail.userTown);
 
     return this.http.post('http://35.177.35.62/api/createMember', body, null).timeout(4000).map(res => res.json());
   }
 
-  getUserDetail(token, email, password) {
+  getUserDetail(token, email) {
   	let headers = new Headers({ 'Content-Type': 'application/json', 'token' : token });
   	//var options = new RequestOptions({headers: headers});
     let body = new FormData();
     body.append('email', email);
-    body.append('password', password);
+    // body.append('password', password);
     body.append('token', token);
   	return this.http.post('http://35.177.35.62/api/getMemberDetails', body).timeout(4000).map(res => res.json());
   }
