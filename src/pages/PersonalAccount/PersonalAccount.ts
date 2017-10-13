@@ -1,8 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, App } from 'ionic-angular';
 import { UserDetailPage } from '../PersonalAccount/UserDetail/UserDetail';
 import { PersonalFavouriteEventPage } from '../PersonalAccount/PersonalFavouriteEvent/PersonalFavouriteEvent';
 import { PersonalWorkPlacePage } from '../PersonalAccount/PersonalWorkPlace/PersonalWorkPlace';
+import { UserLoginPage } from '../UserLogin/UserLogin';
+import { Storage } from '@ionic/storage';
+
+
 
 @Component({
   selector: 'PersonalAccount',
@@ -10,7 +14,7 @@ import { PersonalWorkPlacePage } from '../PersonalAccount/PersonalWorkPlace/Pers
 })
 export class PersonalAccountPage {
 
-  constructor(public navCtrl: NavController) {
+  constructor(public navCtrl: NavController, private app: App, private storage: Storage) {
 
   }
 
@@ -25,5 +29,10 @@ export class PersonalAccountPage {
 
   goToMyWorkPlace() {
     this.navCtrl.push(PersonalWorkPlacePage);
+  }
+
+  tempLogout() {
+    this.storage.set('login', false);
+    this.app.getRootNavs()[0].setRoot(UserLoginPage);
   }
 }

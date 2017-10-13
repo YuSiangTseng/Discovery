@@ -12,6 +12,8 @@ export class ShareService {
   public dashboardItemDetail = [];
   index: number;
   itemExisting = false;
+  token = "";
+  email = "";
 
 
   //register user personal detail
@@ -33,22 +35,36 @@ export class ShareService {
 
 
   constructor(private httpProvider: HttpProvider, private storage: Storage, private alertCtrl: AlertController) {
-  		
+  }
+
+  getPassword() {
+    return this.storage.get('password').then((val) => {
+      if(val != null) {
+        var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Password");
+        var password = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        return password;
+      }
+     });
   }
 
   getToken() {
-    this.storage.get('token').then((val) => {
+    return this.storage.get('token').then((val) => {
+      if(val != null) {
         var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
         var token = decryptedBytes.toString(CryptoJS.enc.Utf8);
-        return token;
-      });
+        return token
+      }
+        
+    });
   }
 
   getEmail() {
-    this.storage.get('email').then((val) => {
-          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
-          var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
-          return email;
+    return this.storage.get('email').then((val) => {
+      if(val != null) {
+        var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
+        var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
+        return email;
+      } 
     });
   }
 

@@ -35,6 +35,14 @@ export class UtilsProvider {
 
   }
 
+  updateTickIconForInputField(inputField) {
+    if(inputField != "" && inputField != null) {
+      return "assets/img/tick.svg";
+    } else {
+      return "";
+    }
+  }
+
   
   getMonth(date) {
     switch(date.getMonth()) {

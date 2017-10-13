@@ -16,7 +16,6 @@ import CryptoJS from 'crypto-js';
 export class HttpProvider {
 
   constructor(public http: Http, private storage: Storage) {
-    console.log(this.getDummyEvents());
   }
 
   getDummyEvents() {
@@ -86,16 +85,40 @@ export class HttpProvider {
   	return this.http.post('http://35.177.35.62/api/getMemberDetails', body).timeout(4000).map(res => res.json());
   }
 
-  updateUserDetail(token, email, password, title, birthday, name) {
+  updateUserPersonalDetail(token, email, password, title, birthday, firstName, lastName) {
     let headers = new Headers({ 'Content-Type': 'application/json', 'token' : token });
     //var options = new RequestOptions({headers: headers});
     let body = new FormData();
     body.append('email', email);
-    body.append('password', password);
     body.append('token', token);
     body.append('title', title);
-    body.append('date_of_birth', birthday);
-    body.append('name', name);
+    body.append('password', password);
+    body.append('birthday', birthday);
+    body.append('firstname', firstName);
+    body.append('lastname', lastName);
+    return this.http.post('http://35.177.35.62/api/updateMemberDetails', body).timeout(4000).map(res => res.json());
+  }
+
+  updateUserPersonalPassword(token, email, password) {
+    let body = new FormData();
+    body.append('email', email);
+    body.append('token', token);
+    body.append('password', password);
+    return this.http.post('http://35.177.35.62/api/updateMemberPassword', body).timeout(4000).map(res => res.json());
+  }
+
+  updateUserWorkPlace(token, jobTitle, keyStage, schoolName, postcode, country, town, email, password) {
+    let headers = new Headers({ 'Content-Type': 'application/json', 'token' : token });
+    //var options = new RequestOptions({headers: headers});
+    let body = new FormData();
+    body.append('token', token);
+    body.append('email', email);
+    body.append('jobtitle', jobTitle);
+    body.append('keystage', keyStage);
+    body.append('schoolname', schoolName);
+    body.append('postcode', postcode);
+    body.append('country', country);
+    body.append('town', town);
     return this.http.post('http://35.177.35.62/api/updateMemberDetails', body).timeout(4000).map(res => res.json());
   }
 

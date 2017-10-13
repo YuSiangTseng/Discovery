@@ -12,6 +12,8 @@ import { DateFormatPipe } from 'angular2-moment';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { Facebook, FacebookLoginResponse } from '@ionic-native/facebook';
 import { Keyboard } from '@ionic-native/keyboard';
+import { ShareService } from '../../ShareService/ShareService';
+
 
 @Component({
   selector: 'UserDetail',
@@ -33,6 +35,10 @@ export class UserDetailPage {
 
   tempEmail = "";
   tempPassword = "";
+  tempFirstName = "";
+  tempLastName = "";
+  tempBirthday = "";
+  tempTitle = "";
 
 
   tickImageForFirstName = '';
@@ -43,26 +49,29 @@ export class UserDetailPage {
   // private date: any = moment().toISOString();
 
   private imageSrc = "assets/img/userAvatar.svg";
-  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private app: App, private platform: Platform, public utils: UtilsProvider, private httpProvider: HttpProvider, private storage: Storage, private keychain: Keychain, public fb: Facebook, private keyboard: Keyboard, private camera: Camera) {
-       storage.get('email').then((val) => {
-          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Email");
-          var email = decryptedBytes.toString(CryptoJS.enc.Utf8);
-          this.tempEmail = email;
-        });
-       storage.get('password').then((val) => {
-          var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Password");
-          var password = decryptedBytes.toString(CryptoJS.enc.Utf8);
-          this.tempPassword = password;
-        });
-
-
-      storage.get('token').then((val) => {
-  	  	var decryptedBytes = CryptoJS.AES.decrypt(val, "My Secret Token");
-    	  var token = decryptedBytes.toString(CryptoJS.enc.Utf8);
-      	this.token = token;
-
-      	this.getUserDetail(this.token, this.tempEmail);
-      	this.keyboard.hideKeyboardAccessoryBar(true);
+  constructor(public navCtrl: NavController, private alertCtrl: AlertController, private app: App, private shareService: ShareService, private platform: Platform, public utils: UtilsProvider, private httpProvider: HttpProvider, private storage: Storage, private keychain: Keychain, public fb: Facebook, private keyboard: Keyboard, private camera: Camera) {
+       this.shareService.getEmail().then((val) => {
+          if(val != null && val != "") {
+            this.email = val;
+            this.shareService.getToken().then((val) => {
+              if(val != null && val != "") {
+                this.token = val;
+                this.getUserDetail(this.token, this.email);
+              }
+            }).catch(error=>{
+                //handle error
+            });
+          }
+      }).catch(error=>{
+          //handle error
+      });
+      this.shareService.getPassword().then((val) => {
+          if(val != null && val != "") {
+            this.password = val;
+            this.tempPassword = val;
+          }
+      }).catch(error=>{
+          //handle error
       });
   }
 
@@ -118,9 +127,11 @@ export class UserDetailPage {
             this.lastName = result["member_details"].lastname;
             this.birthday = result["member_details"].birthday;
             this.personTitle = result["member_details"].title;
+            this.tempFirstName = this.firstName;
+            this.tempLastName =  this.lastName;
+            this.tempBirthday = this.birthday;
+            this.tempTitle = this.personTitle;
           }
-      		this.email = this.tempEmail;
-          this.password = this.tempPassword;
           this.updateTickIconAfterSendRequest();
   		}, err => {
           this.errorMessageHandling(err, "getUserDetail");
@@ -129,25 +140,59 @@ export class UserDetailPage {
 
   updateUserDetailAndPushToTabsPage() {
 
-    this.createSpinnerThenSpin();
-    this.httpProvider.updateUserDetail(this.token, this.email, this.password, this.personTitle, this.birthday, this.firstName).subscribe(
-        result => {
-          this.dismissSpinner();
-          if(result["member_details"] != null) {
-              var alert = this.alertCtrl.create({
-                title: 'Update Completed',
-                buttons: [{
-                text: 'Continue',
-                handler: () => {
-                  this.navCtrl.setRoot(TabsPage);
-                }
-              }]
-            });
-            alert.present();
-          }
-      }, err => {
-        this.errorMessageHandling(err, "updateUserDetail");
-      });
+    if(this.tempFirstName != this.firstName || this.tempLastName != this.lastName || this.tempBirthday != this.birthday || this.tempTitle != this.personTitle || this.tempPassword != this.password) {
+        this.createSpinnerThenSpin();
+          this.httpProvider.updateUserPersonalDetail(this.token, this.email, this.password, this.personTitle, this.birthday, this.firstName, this.lastName).subscribe(
+          result => {
+            this.dismissSpinner();
+            if(result["member_details"] != null) {
+              if(this.tempPassword == this.password) {
+                var alert = this.alertCtrl.create({
+                  title: 'Update Completed',
+                  buttons: [{
+                  text: 'Continue',
+                  handler: () => {
+                    this.navCtrl.setRoot(TabsPage);
+                  }
+                  }]
+                  });
+                alert.present();
+              } else {
+                this.httpProvider.updateUserPersonalPassword(this.token, this.email, this.password).subscribe(result => {
+                  if(result["member"] != null) {
+                    var encryptedPassword = CryptoJS.AES.encrypt(this.password, "My Secret Password").toString();
+                    this.storage.set('password', encryptedPassword);
+                    var alert = this.alertCtrl.create({
+                      title: 'Password has been updated',
+                      subTitle: 'Please use new password to log in again',
+                      buttons: [{
+                      text: 'OK',
+                      handler: () => {
+                        this.storage.set('login', false);
+                        this.app.getRootNavs()[0].setRoot(UserLoginPage);
+                      }
+                      }]
+                      });
+                    alert.present();
+                  } 
+                }, err => {
+                    this.errorMessageHandling(err, "updateUserDetail");
+                });
+              }  
+        
+            }
+          }, err => {
+              this.errorMessageHandling(err, "updateUserDetail");
+          });
+      } else {
+        var alert = this.alertCtrl.create({
+          title: 'Opps, seems nothing is changed',
+          buttons: [{
+          text: 'OK'
+          }]
+          });
+        alert.present();
+      }
   }
 
   @ViewChild('datePicker') datePicker;
@@ -168,72 +213,26 @@ export class UserDetailPage {
   }
 
   updateTickIconAfterSendRequest() {
-    if(this.firstName != '') {
-      this.tickImageForFirstName = "assets/img/tick.svg";
-    } else {
-      this.tickImageForFirstName = "";
-    }
-
-    if(this.lastName != '') {
-      this.tickImageForLastName = "assets/img/tick.svg";
-    } else {
-      this.tickImageForLastName = "";
-    }
-
-    if(this.email != '') {
-      this.tickImageForEmail = "assets/img/tick.svg";
-    } else {
-      this.tickImageForEmail = "";
-    }
-
-    if(this.personTitle != '') {
-      this.tickImageForTitle = "assets/img/tick.svg";
-    } else {
-      this.tickImageForTitle = "";
-    }
-
-    if(this.gender != '') {
-      this.tickImageForTitle = "assets/img/tick.svg";
-      if(this.gender == "male") {
-        this.personTitle = "Mr.";
-      } else {
-        this.personTitle = "Miss";
-      }
-    } else {
-       this.tickImageForTitle = "";
-    }
+    this.tickImageForFirstName = this.utils.updateTickIconForInputField(this.firstName);
+    this.tickImageForLastName = this.utils.updateTickIconForInputField(this.lastName);
+    this.tickImageForEmail = this.utils.updateTickIconForInputField(this.email);
+    this.tickImageForTitle = this.utils.updateTickIconForInputField(this.personTitle);
 
   }
 
   updateTickIcon(field) {
   	switch (field) {
   		case "firstName" :
-	  		if(this.firstName != '') {
-	  			this.tickImageForFirstName = "assets/img/tick.svg";
-	  		} else {
-	  			this.tickImageForFirstName = "";
-	  		}
+	  		this.tickImageForFirstName = this.utils.updateTickIconForInputField(this.firstName);
 	  		break;
 	  	case "lastName" :
-	  		if(this.lastName != '') {
-	  			this.tickImageForLastName = "assets/img/tick.svg";
-	  		} else {
-	  			this.tickImageForLastName = "";
-	  		}
+	  		this.tickImageForLastName = this.utils.updateTickIconForInputField(this.lastName);
 	  		break;
 	  	case "email" :
-	  		if(this.email != '') {
-	  			this.tickImageForEmail = "assets/img/tick.svg";
-	  		} else {
-	  			this.tickImageForEmail = "";
-	  		}
+	  		this.tickImageForEmail = this.utils.updateTickIconForInputField(this.email);
 	  		break;
 	  	case "title" :
-  			if(this.personTitle != '') {
-				this.tickImageForTitle = "assets/img/tick.svg";
-  			} else {
-  				this.tickImageForTitle = "";
-  			}
+  			this.tickImageForTitle = this.utils.updateTickIconForInputField(this.personTitle);
   			break;
 	  			
   	} 
